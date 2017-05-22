@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity
                 textView01.setText("관리자 모드");
                 textView02.setText(parcel.getLoginId()+"님 반갑습니다.");
             }
-
         }
     }
 }
