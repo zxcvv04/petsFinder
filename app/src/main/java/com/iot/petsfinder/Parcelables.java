@@ -33,10 +33,6 @@ public class Parcelables implements Parcelable
         }
     };
 
-    public Parcelables()
-    {
-    }
-
     @Override
     public int describeContents()
     {
@@ -46,7 +42,7 @@ public class Parcelables implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-
+        dest.writeString(LoginId);
     }
 
     public String getLoginId()
