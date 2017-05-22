@@ -12,6 +12,7 @@ import android.widget.ImageView;
 public class LoginActivity extends AppCompatActivity
 {
     private static final int ACTIVITY_MAIN=1004;
+    private static final int ACTIVITY_JOIN=1005;
 
     public static final String LoginId = "admin";
     public static final String LoginPw = "admin";
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity
     EditText passwordInput;
 
     int count=0;
+    int join_counter=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,7 +69,7 @@ public class LoginActivity extends AppCompatActivity
         }, 2000);
     }
 
-    public void btnLogin(View v){
+    protected void btnLogin(View v){
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
@@ -88,5 +90,17 @@ public class LoginActivity extends AppCompatActivity
             intent.putExtra("parcel", parcel);
             startActivityForResult(intent, ACTIVITY_MAIN);
         }
+    }
+
+    protected void btnJoin(View v){
+        Intent intent=new Intent(
+                getApplicationContext(),
+                JoinActivity.class
+        );
+
+        startActivityForResult(
+                intent,
+                ACTIVITY_JOIN
+        );
     }
 }

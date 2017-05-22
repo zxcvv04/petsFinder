@@ -100,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
+            android:onClick="btnJoin"
             android:text="회원가입"
             android:textSize="15sp"
             android:textStyle="bold"/>
