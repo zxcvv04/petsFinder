@@ -24,6 +24,10 @@ public class LoginActivity extends AppCompatActivity
         imageView02=(ImageView) findViewById(R.id.imageView2);
         imageView03=(ImageView) findViewById(R.id.imageView3);
 
+        imageRotation();
+    }
+
+    protected void imageRotation(){
         final Handler handler = new Handler();
 
         handler.postDelayed(new Runnable() {
