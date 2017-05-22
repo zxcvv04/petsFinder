@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity
 {
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity
     EditText userNameInput;
     EditText passwordInput;
 
+    String SelectId="";
     int count=0;
     int join_counter=0;
 
@@ -69,12 +71,21 @@ public class LoginActivity extends AppCompatActivity
         }, 2000);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        userNameInput.setText("");
+        passwordInput.setText("");
+    }
+
     protected void btnLogin(View v){
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
         if(LoginId.equals(userName)&&LoginPw.equals(password))
         {
+            SelectId=LoginId;
+
             Intent intent = new Intent(
                     getApplicationContext(),
                     MainActivity.class
@@ -86,9 +97,15 @@ public class LoginActivity extends AppCompatActivity
             );
 
             intent.setComponent(name);
-            Parcelables parcel = new Parcelables(LoginId);
+            Parcelables parcel = new Parcelables(SelectId);
             intent.putExtra("parcel", parcel);
             startActivityForResult(intent, ACTIVITY_MAIN);
+        }
+        else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "로그인에 실패했습니다.",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
