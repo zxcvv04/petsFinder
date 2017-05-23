@@ -2,6 +2,7 @@ package com.iot.petsfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-        TabLay tabs = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
         textView01 = (TextView) findViewById(R.id.userMode);
