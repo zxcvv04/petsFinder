@@ -17,15 +17,19 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="?attr/imageButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                android:adjustViewBounds="true"
+                android:adjustViewBounds="false"
                 android:cropToPadding="false"
-                android:maxWidth="@dimen/card_image_height"
-                android:minHeight="@dimen/card_image_height"
-                android:scaleType="fitCenter"
-                app:srcCompat="@mipmap/ic_launcher" />
+                android:maxHeight="@android:dimen/thumbnail_height"
+                android:maxWidth="@android:dimen/thumbnail_width"
+                android:minHeight="150dp"
+                android:minWidth="150dp"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
 
 
             <TextView
@@ -33,14 +37,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="품종을 선택해주세요"
-                android:textSize="18sp" />
+                android:textSize="24sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -56,7 +62,31 @@
                         android:orientation="horizontal">
 
                         <ImageButton
-                            android:id="@+id/imageButton16"
+                            android:id="@+id/imageButton21"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/border_collie" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton22"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/boxer" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton23"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/bull_terrier" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton24"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
@@ -64,12 +94,36 @@
                             app:srcCompat="@drawable/bulldog" />
 
                         <ImageButton
+                            android:id="@+id/imageButton25"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/chihuahua" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton26"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/chow_chow" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton16"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/dachshund" />
+
+                        <ImageButton
                             android:id="@+id/imageButton20"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/bordercollie" />
+                            app:srcCompat="@drawable/doberman" />
 
                         <ImageButton
                             android:id="@+id/imageButton19"
@@ -77,7 +131,7 @@
                             android:layout_height="70dp"
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/pitbull" />
+                            app:srcCompat="@drawable/english_bulldog" />
 
                         <ImageButton
                             android:id="@+id/imageButton17"
@@ -85,7 +139,7 @@
                             android:layout_height="70dp"
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/hound" />
+                            app:srcCompat="@drawable/french_bulldog" />
 
                         <ImageButton
                             android:id="@+id/imageButton5"
@@ -93,7 +147,7 @@
                             android:layout_height="70dp"
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/husky" />
+                            app:srcCompat="@drawable/poodle" />
 
                         <ImageButton
                             android:id="@+id/imageButton18"
@@ -101,7 +155,40 @@
                             android:layout_height="70dp"
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/labrador" />
+                            app:srcCompat="@drawable/pug" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton31"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/rott_weiler" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton30"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/sheperd" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton29"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/shiba_inu" />
+
+                        <ImageButton
+                            android:id="@+id/imageButton28"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/yorkshire_terrier" />
+
                     </LinearLayout>
                 </HorizontalScrollView>
             </LinearLayout>
@@ -110,6 +197,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -135,6 +223,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -161,6 +250,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -186,6 +276,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
                 <TextView
