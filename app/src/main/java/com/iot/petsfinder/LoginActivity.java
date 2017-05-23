@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity
     private static final String TABLE_NAME = "login";
     private static final String TAG = "===";
 
-//    private DatabaseHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private SQLiteDatabase db;
 
     ImageView imageView01;
@@ -91,10 +91,11 @@ public class LoginActivity extends AppCompatActivity
     }
 
     protected void btnLogin(View v){
+
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-
+        if(!getDB()) Log.e(TAG, "fail to connect to db");
 
 //        if(LoginId.equals(userName)&&LoginPw.equals(password))
         if (getAuth(userName, password)) //login success
@@ -139,9 +140,10 @@ public class LoginActivity extends AppCompatActivity
     /////db helper
     private class DatabaseHelper extends SQLiteOpenHelper {
 
-        public DatabaseHelper(Context context) {
+        DatabaseHelper(Context context) {
             super(context, DB_NAME, null, DB_VERSION);
         }
+
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
@@ -156,7 +158,6 @@ public class LoginActivity extends AppCompatActivity
             try { db.execSQL(CREATE_SQL); } catch (Exception e) { ErrLogger(e); }
 
         }
-
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "upgrading database version from " + oldVersion + " to " + newVersion);
@@ -169,8 +170,17 @@ public class LoginActivity extends AppCompatActivity
 
     }
 
-    ///// query id, pw hashMap
+    ///// launch db
+    private boolean getDB() {
+        Log.w(TAG, "open db");
+        dbHelper = new DatabaseHelper(this);
+        db = dbHelper.getWritableDatabase();
+        return true;
+    }
+
+    ///// query id, pw
     private boolean getAuth(String userName, String password){
+        if (userName == null || password == null) return false;
         Cursor _cursorQryResult = db.rawQuery("select * from " + TABLE_NAME +
         " where id = " + userName +
         " and pw = " + password, null);
