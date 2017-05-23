@@ -12,13 +12,15 @@
         android:id="@+id/userMode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"/>
+        android:text="관리자모드"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/userId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"/>
+        android:text="반갑습니다"
+        android:textStyle="bold"/>
 </LinearLayout>
 
 
