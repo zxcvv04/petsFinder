@@ -3,6 +3,7 @@ package com.iot.petsfinder;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
@@ -19,12 +20,15 @@ public class LoginActivity extends AppCompatActivity
     private static final int ACTIVITY_MAIN=1004;
     private static final int ACTIVITY_JOIN=1005;
 
-    public static final String LoginId = "admin";
-    public static final String LoginPw = "admin";
-    private static final String DB_NAME = "petsfinder";
+    //    public static final String LoginId = "admin";
+//    public static final String LoginPw = "admin";
     private static final int DB_VERSION = 1;
+    private static final String DB_NAME = "petsfinder";
     private static final String TABLE_NAME = "login";
     private static final String TAG = "===";
+
+//    private DatabaseHelper dbHelper;
+    private SQLiteDatabase db;
 
     ImageView imageView01;
     ImageView imageView02;
@@ -90,9 +94,12 @@ public class LoginActivity extends AppCompatActivity
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        if(LoginId.equals(userName)&&LoginPw.equals(password))
+
+
+//        if(LoginId.equals(userName)&&LoginPw.equals(password))
+        if (getAuth(userName, password)) //login success
         {
-            SelectId=LoginId;
+//            SelectId=LoginId;
 
             Intent intent = new Intent(
                     getApplicationContext(),
@@ -109,7 +116,7 @@ public class LoginActivity extends AppCompatActivity
             intent.putExtra("parcel", parcel);
             startActivityForResult(intent, ACTIVITY_MAIN);
         }
-        else {
+        else { ///fail to login
             Toast.makeText(
                     getApplicationContext(),
                     "로그인에 실패했습니다.",
@@ -129,6 +136,7 @@ public class LoginActivity extends AppCompatActivity
         );
     }
 
+    /////db helper
     private class DatabaseHelper extends SQLiteOpenHelper {
 
         public DatabaseHelper(Context context) {
@@ -160,4 +168,18 @@ public class LoginActivity extends AppCompatActivity
         }
 
     }
+
+    ///// query id, pw hashMap
+    private boolean getAuth(String userName, String password){
+        Cursor _cursorQryResult = db.rawQuery("select * from " + TABLE_NAME +
+        " where id = " + userName +
+        " and pw = " + password, null);
+
+        if (_cursorQryResult.getCount() == 1) {
+            _cursorQryResult.close();
+            return true;
+        }
+        else { _cursorQryResult.close(); return false; }
+    }
+
 }
