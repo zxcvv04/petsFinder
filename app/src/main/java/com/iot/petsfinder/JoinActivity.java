@@ -67,7 +67,6 @@ public class JoinActivity extends AppCompatActivity
         loginDataBaseAdapter.close();
     }
 
-
 //    private SQLiteDatabase db;
 //
 //    @Override
