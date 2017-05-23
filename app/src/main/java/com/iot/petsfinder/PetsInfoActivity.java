@@ -18,7 +18,7 @@ public class PetsInfoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pets_info);
 
-        _recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        _recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
         ArrayList<Album> albums = loadData();
 

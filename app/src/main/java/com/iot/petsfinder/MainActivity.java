@@ -11,13 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.id.tabs;
 
 
 public class MainActivity extends AppCompatActivity
@@ -40,9 +37,6 @@ public class MainActivity extends AppCompatActivity
         setupViewPager(viewPager);
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-
-        textView01 = (TextView) findViewById(R.id.userMode);
-        textView02 = (TextView) findViewById(R.id.userId);
 
         Intent intent = getIntent();
         if (intent != null)
