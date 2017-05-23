@@ -1,10 +1,14 @@
 package com.iot.petsfinder;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +21,10 @@ public class LoginActivity extends AppCompatActivity
 
     public static final String LoginId = "admin";
     public static final String LoginPw = "admin";
+    private static final String DB_NAME = "petsfinder";
+    private static final int DB_VERSION = 1;
+    private static final String TABLE_NAME = "login";
+    private static final String TAG = "===";
 
     ImageView imageView01;
     ImageView imageView02;
@@ -119,5 +127,37 @@ public class LoginActivity extends AppCompatActivity
                 intent,
                 ACTIVITY_JOIN
         );
+    }
+
+    private class DatabaseHelper extends SQLiteOpenHelper {
+
+        public DatabaseHelper(Context context) {
+            super(context, DB_NAME, null, DB_VERSION);
+        }
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            try {
+                String DROP_SQL = "drop table if exists " + TABLE_NAME;
+                db.execSQL(DROP_SQL);
+            } catch (Exception e) { ErrLogger(e); }
+
+            String CREATE_SQL = "create table " + TABLE_NAME + " (" +
+                    " mail text PRIMARY KEY, " +
+                    " pw text )";
+
+            try { db.execSQL(CREATE_SQL); } catch (Exception e) { ErrLogger(e); }
+
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            Log.w(TAG, "upgrading database version from " + oldVersion + " to " + newVersion);
+        }
+
+        void ErrLogger(Exception e) {
+            e.printStackTrace();
+            Log.e(TAG, e.getMessage());
+        }
+
     }
 }
