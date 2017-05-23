@@ -150,7 +150,7 @@
         android:id="@+id/loginConfirmPasswordInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="비밀번호 다시를 입력하세요."
+        android:hint="비밀번호를 다시 입력하세요."
         android:textStyle="bold"
         android:inputType="textPassword"
         android:layout_marginRight="8dp"
