@@ -1,15 +1,10 @@
 package com.iot.petsfinder;
 
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,15 +15,14 @@ public class LoginActivity extends AppCompatActivity
     private static final int ACTIVITY_MAIN=1004;
     private static final int ACTIVITY_JOIN=1005;
 
+    LoginDataBaseAdapter loginDataBaseAdapter;
+
     //    public static final String LoginId = "admin";
 //    public static final String LoginPw = "admin";
-    private static final int DB_VERSION = 1;
-    private static final String DB_NAME = "petsfinder";
-    private static final String TABLE_NAME = "login";
     private static final String TAG = "===";
 
-    private DatabaseHelper dbHelper;
-    private SQLiteDatabase db;
+//    private DatabaseHelper dbHelper;
+//    private SQLiteDatabase db;
 
     ImageView imageView01;
     ImageView imageView02;
@@ -55,6 +49,9 @@ public class LoginActivity extends AppCompatActivity
         passwordInput = (EditText) findViewById(R.id.loginPasswordInput);
 
         imageRotation();
+
+        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter=loginDataBaseAdapter.open();
     }
 
     protected void imageRotation(){
@@ -95,18 +92,17 @@ public class LoginActivity extends AppCompatActivity
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        if(!getDB()) Log.e(TAG, "fail to connect to db");
 
-//        if(LoginId.equals(userName)&&LoginPw.equals(password))
-        if (getAuth(userName, password)) //login success
+        // fetch the Password form database for respective user name
+        String storedPassword=loginDataBaseAdapter.getSinlgeEntry(userName);
+
+        // check if the Stored password matches with  Password entered by user
+        if(password.equals(storedPassword))
         {
-//            SelectId=LoginId;
-
             Intent intent = new Intent(
                     getApplicationContext(),
                     MainActivity.class
             );
-
             ComponentName name = new ComponentName(
                     "com.iot.petsfinder",
                     "com.iot.petsfinder.MainActivity"
@@ -117,12 +113,39 @@ public class LoginActivity extends AppCompatActivity
             intent.putExtra("parcel", parcel);
             startActivityForResult(intent, ACTIVITY_MAIN);
         }
-        else { ///fail to login
+        else
+        {
             Toast.makeText(
                     getApplicationContext(),
                     "로그인에 실패했습니다.",
                     Toast.LENGTH_LONG).show();
         }
+
+//        if(LoginId.equals(userName)&&LoginPw.equals(password))
+//        {
+//            SelectId=LoginId;
+//
+//            Intent intent = new Intent(
+//                    getApplicationContext(),
+//                    MainActivity.class
+//            );
+//
+//            ComponentName name = new ComponentName(
+//                    "com.iot.petsfinder",
+//                    "com.iot.petsfinder.MainActivity"
+//            );
+//
+//            intent.setComponent(name);
+//            Parcelables parcel = new Parcelables(SelectId);
+//            intent.putExtra("parcel", parcel);
+//            startActivityForResult(intent, ACTIVITY_MAIN);
+//        }
+//        else { ///fail to login
+//            Toast.makeText(
+//                    getApplicationContext(),
+//                    "로그인에 실패했습니다.",
+//                    Toast.LENGTH_LONG).show();
+//        }
     }
 
     protected void btnJoin(View v){
@@ -137,59 +160,65 @@ public class LoginActivity extends AppCompatActivity
         );
     }
 
-    /////db helper
-    private class DatabaseHelper extends SQLiteOpenHelper {
-
-        DatabaseHelper(Context context) {
-            super(context, DB_NAME, null, DB_VERSION);
-        }
-
-        @Override
-        public void onCreate(SQLiteDatabase db) {
-            try {
-                String DROP_SQL = "drop table if exists " + TABLE_NAME;
-                db.execSQL(DROP_SQL);
-            } catch (Exception e) { ErrLogger(e); }
-
-            String CREATE_SQL = "create table " + TABLE_NAME + " (" +
-                    " mail text PRIMARY KEY, " +
-                    " pw text )";
-
-            try { db.execSQL(CREATE_SQL); } catch (Exception e) { ErrLogger(e); }
-
-        }
-        @Override
-        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w(TAG, "upgrading database version from " + oldVersion + " to " + newVersion);
-        }
-
-        void ErrLogger(Exception e) {
-            e.printStackTrace();
-            Log.e(TAG, e.getMessage());
-        }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Close The Database
+        loginDataBaseAdapter.close();
     }
-
-    ///// launch db
-    private boolean getDB() {
-        Log.w(TAG, "open db");
-        dbHelper = new DatabaseHelper(this);
-        db = dbHelper.getWritableDatabase();
-        return true;
-    }
-
-    ///// query id, pw
-    private boolean getAuth(String userName, String password){
-        if (userName == null || password == null) return false;
-        Cursor _cursorQryResult = db.rawQuery("select * from " + TABLE_NAME +
-        " where id = " + userName +
-        " and pw = " + password, null);
-
-        if (_cursorQryResult.getCount() == 1) {
-            _cursorQryResult.close();
-            return true;
-        }
-        else { _cursorQryResult.close(); return false; }
-    }
-
 }
+
+/////db helper
+//    private class DatabaseHelper extends SQLiteOpenHelper {
+//
+//        DatabaseHelper(Context context) {
+//            super(context, DB_NAME, null, DB_VERSION);
+//        }
+//
+//        @Override
+//        public void onCreate(SQLiteDatabase db) {
+//            try {
+//                String DROP_SQL = "drop table if exists " + TABLE_NAME;
+//                db.execSQL(DROP_SQL);
+//            } catch (Exception e) { ErrLogger(e); }
+//
+//            String CREATE_SQL = "create table " + TABLE_NAME + " (" +
+//                    " mail text PRIMARY KEY, " +
+//                    " pw text )";
+//
+//            try { db.execSQL(CREATE_SQL); } catch (Exception e) { ErrLogger(e); }
+//
+//        }
+//        @Override
+//        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//            Log.w(TAG, "upgrading database version from " + oldVersion + " to " + newVersion);
+//        }
+//
+//        void ErrLogger(Exception e) {
+//            e.printStackTrace();
+//            Log.e(TAG, e.getMessage());
+//        }
+//
+//    }
+//
+//    ///// launch db
+//    private boolean getDB() {
+//        Log.w(TAG, "open db");
+//        dbHelper = new DatabaseHelper(this);
+//        db = dbHelper.getWritableDatabase();
+//        return true;
+//    }
+//
+//    ///// query id, pw
+//    private boolean getAuth(String userName, String password){
+//        if (userName == null || password == null) return false;
+//        Cursor _cursorQryResult = db.rawQuery("select * from " + TABLE_NAME +
+//        " where id = " + userName +
+//        " and pw = " + password, null);
+//
+//        if (_cursorQryResult.getCount() == 1) {
+//            _cursorQryResult.close();
+//            return true;
+//        }
+//        else { _cursorQryResult.close(); return false; }
+//    }
