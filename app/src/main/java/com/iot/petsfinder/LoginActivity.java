@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity
     protected void btnJoin(View v){
         Intent intent=new Intent(
                 getApplicationContext(),
-                JoinActivity.class
+                SignUpActivity.class
         );
 
         startActivityForResult(

@@ -16,7 +16,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-public class JoinActivity extends AppCompatActivity
+public class SignUpActivity extends AppCompatActivity
 {
 
     EditText editTextUserName,editTextPassword,editTextConfirmPassword;
@@ -105,7 +105,7 @@ public class JoinActivity extends AppCompatActivity
         protected void onPreExecute() {
             super.onPreExecute();
 
-            loading = ProgressDialog.show(JoinActivity.this,
+            loading = ProgressDialog.show(SignUpActivity.this,
                     "Please Wait", null, true, true);
         }
 
