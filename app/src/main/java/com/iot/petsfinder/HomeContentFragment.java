@@ -51,7 +51,8 @@ public class HomeContentFragment extends Fragment
                     context.startActivity(intent);
                 }
             });
-
+            itemView.setVisibility(View.GONE);
+            itemView.setVisibility(View.VISIBLE);
         }
     }
 
