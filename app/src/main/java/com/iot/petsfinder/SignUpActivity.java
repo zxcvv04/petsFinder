@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -21,25 +20,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity
 {
 
     String myJSON;
 
-    ListView list;
-
-    private static final String TAG_RESULTS="result";
+    private static final String TAG_RESULTS = "result";
     private static final String TAG_MAIL = "mail";
-    private static final String TAG_PW ="pw";
+    private static final String TAG_PW = "pw";
 
     JSONArray peoples = null;
 
-    ArrayList<HashMap<String, String>> personList;
-
-    EditText editTextUserName,editTextPassword,editTextConfirmPassword;
+    EditText editTextUserName, editTextPassword, editTextConfirmPassword;
     Button btnCreateAccount;
 
     String userName, password, confirmPassword;
@@ -53,12 +46,12 @@ public class SignUpActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
-        personList = new ArrayList<HashMap<String,String>>();
 
+        editTextUserName = (EditText) findViewById(R.id.loginIdInput);
+        editTextPassword = (EditText) findViewById(R.id.loginPasswordInput);
+        editTextConfirmPassword = (EditText) findViewById(R.id.loginConfirmPasswordInput);
 
-        editTextUserName = (EditText)findViewById(R.id.loginIdInput);
-        editTextPassword = (EditText)findViewById(R.id.loginPasswordInput);
-        editTextConfirmPassword=(EditText)findViewById(R.id.loginConfirmPasswordInput);
+        getData("http://122.44.13.91:11057/getdata.php");
 
         /*// get Instance  of Database Adapter
         loginDataBaseAdapter=new LoginDataBaseAdapter(this);
@@ -69,57 +62,62 @@ public class SignUpActivity extends AppCompatActivity
         editTextPassword=(EditText)findViewById(R.id.loginPasswordInput);
         editTextConfirmPassword=(EditText)findViewById(R.id.loginConfirmPasswordInput);*/
 
-        btnCreateAccount=(Button)findViewById(R.id.button);
-        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        btnCreateAccount = (Button) findViewById(R.id.button);
+        btnCreateAccount.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
                 // TODO Auto-generated method stub
 
-                userName=editTextUserName.getText().toString();
-                password=editTextPassword.getText().toString();
-                confirmPassword=editTextConfirmPassword.getText().toString();
+                userName = editTextUserName.getText().toString();
+                password = editTextPassword.getText().toString();
+                confirmPassword = editTextConfirmPassword.getText().toString();
 
-                getData("http://122.44.13.91:11057/getdata.php");
 
-                try {
+                try
+                {
                     JSONObject jsonObj = new JSONObject(myJSON);
                     peoples = jsonObj.getJSONArray(TAG_RESULTS);
 
-                    for(int i=0;i<peoples.length();i++){
+                    boolean isAuth = false;
+
+                    for (int i = 0; i < peoples.length(); i++)
+                    {
                         JSONObject c = peoples.getJSONObject(i);
                         dbaccountMail = c.getString(TAG_MAIL);
                         dbacccountPw = c.getString(TAG_PW);
 
-                        if(userName.equals("")||password.equals(""))
+
+                        if (userName.equals(dbaccountMail)
+                                && password.equals(dbacccountPw)) isAuth = true;
+                    }
+
+
+                    if ( isAuth )
+                    {
+                        Toast.makeText(getApplicationContext(), "동일한 계정이 있습니다.", Toast.LENGTH_LONG).show();
+                    }
+                    else if (userName.equals("") || password.equals(""))
+                            Toast.makeText(getApplicationContext(), "값을 입력해 주세요..", Toast.LENGTH_LONG).show();
+                    else if ((userName!=null) && (password!=null))
                         {
-                            Toast.makeText(getApplicationContext(), "입력이 없습니다.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        if(userName.equals(dbaccountMail))
-                        {
-                            Toast.makeText(getApplicationContext(), "동일한 계정이 있습니다.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        else{
                             insertToDatabase(userName, password);
-                            Toast.makeText(getApplicationContext(), "Account Successfully Created",
-                                    Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "계정이 만들어졌습니다.",Toast.LENGTH_LONG).show();
 
                             finish();
                         }
 
-                        HashMap<String,String> persons = new HashMap<String,String>();
+
 
                         /*persons.put(TAG_MAIL,dbaccountMail);
                         persons.put(TAG_PW,dbacccountPw);
 
                         personList.add(persons);*/
-                    }
 
-
-                } catch (JSONException e) {
+                } catch (JSONException e)
+                {
                     e.printStackTrace();
                 }
-
 
 
                 // check if any of the fields are vaccant
@@ -146,42 +144,46 @@ Toast.LENGTH_LONG).show();
         });
     }
 
-    public void getData(String url){
-        class GetDataJSON extends AsyncTask<String, Void, String>{
+    public void getData(String url)
+    {
+        class GetDataJSON extends AsyncTask<String, Void, String>
+        {
 
             @Override
-            protected String doInBackground(String... params) {
+            protected String doInBackground(String... params)
+            {
 
                 String uri = params[0];
 
                 BufferedReader bufferedReader = null;
-                try {
+                try
+                {
                     URL url = new URL(uri);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
                     StringBuilder sb = new StringBuilder();
 
-                    bufferedReader = new BufferedReader(new InputStreamReader
-                            (con.getInputStream()));
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
                     String json;
-                    while((json = bufferedReader.readLine())!= null){
-                        sb.append(json+"\n");
+                    while ((json = bufferedReader.readLine()) != null)
+                    {
+                        sb.append(json + "\n");
                     }
 
                     return sb.toString().trim();
 
-                }catch(Exception e){
+                } catch (Exception e)
+                {
                     return null;
                 }
-
 
 
             }
 
             @Override
-            protected void onPostExecute(String result){
-                myJSON=result;
-
+            protected void onPostExecute(String result)
+            {
+                myJSON = result;
             }
         }
         GetDataJSON g = new GetDataJSON();
@@ -206,7 +208,8 @@ Toast.LENGTH_LONG).show();
 //
 //
 //    }
-    private void insertToDatabase(String _mail, String _pw){
+    private void insertToDatabase(String _mail, String _pw)
+    {
 
         class InsertData extends AsyncTask<String, Void, String>
         {
@@ -214,7 +217,8 @@ Toast.LENGTH_LONG).show();
 
 
             @Override
-            protected void onPreExecute() {
+            protected void onPreExecute()
+            {
                 super.onPreExecute();
 
                 loading = ProgressDialog.show(SignUpActivity.this,
@@ -222,22 +226,25 @@ Toast.LENGTH_LONG).show();
             }
 
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute(String s)
+            {
                 super.onPostExecute(s);
 
                 loading.dismiss();
-                Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
             }
 
             @Override
-            protected String doInBackground(String... params) {
+            protected String doInBackground(String... params)
+            {
 
-                try{
-                    String mail = (String)params[0];
-                    String pw = (String)params[1];
+                try
+                {
+                    String mail = (String) params[0];
+                    String pw = (String) params[1];
 
-                    String link="http://122.44.13.91:11057/signup.php";
-                    String data  = URLEncoder.encode("mail", "UTF-8") + "="
+                    String link = "http://122.44.13.91:11057/signup.php";
+                    String data = URLEncoder.encode("mail", "UTF-8") + "="
                             + URLEncoder.encode(mail, "UTF-8");
                     data += "&" + URLEncoder.encode("pw", "UTF-8") + "="
                             + URLEncoder.encode(pw, "UTF-8");
@@ -249,7 +256,7 @@ Toast.LENGTH_LONG).show();
                     OutputStreamWriter wr =
                             new OutputStreamWriter(conn.getOutputStream());
 
-                    wr.write( data );
+                    wr.write(data);
                     wr.flush();
 
                     BufferedReader reader = new BufferedReader(
@@ -259,14 +266,14 @@ Toast.LENGTH_LONG).show();
                     String line = null;
 
                     // Read Server Response
-                    while((line = reader.readLine()) != null)
+                    while ((line = reader.readLine()) != null)
                     {
                         sb.append(line);
                         break;
                     }
                     return sb.toString();
-                }
-                catch(Exception e){
+                } catch (Exception e)
+                {
 
                     return new String("Exception: " + e.getMessage());
                 }
@@ -275,6 +282,8 @@ Toast.LENGTH_LONG).show();
         }
 
         InsertData task = new InsertData();
-        task.execute(_mail,_pw);
+        task.execute(_mail, _pw);
     }
+
+
 }

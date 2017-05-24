@@ -19,8 +19,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class LoginActivity extends AppCompatActivity
@@ -35,9 +33,6 @@ public class LoginActivity extends AppCompatActivity
     private static final String TAG_PW = "pw";
 
     JSONArray peoples = null;
-
-    ArrayList<HashMap<String, String>> personList;
-
 
     /*LoginDataBaseAdapter loginDataBaseAdapter;*/
 
@@ -75,8 +70,6 @@ public class LoginActivity extends AppCompatActivity
         passwordInput = (EditText) findViewById(R.id.loginPasswordInput);
 
         imageRotation();
-
-        personList = new ArrayList<HashMap<String, String>>();
 
         getData("http://122.44.13.91:11057/getdata.php");
         /*loginDataBaseAdapter=new LoginDataBaseAdapter(this);
@@ -138,6 +131,7 @@ public class LoginActivity extends AppCompatActivity
 
             boolean isAuth = false;
 
+
             for (int i = 0; i < peoples.length(); i++)
             {
                 JSONObject c = peoples.getJSONObject(i);
@@ -165,16 +159,9 @@ public class LoginActivity extends AppCompatActivity
 
                 Toast.makeText(getApplicationContext(), "로그인.", Toast.LENGTH_LONG).show();
             } else if (userName.equals("") || password.equals(""))
-                Toast.makeText(getApplicationContext(), "입력이 없습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "값을 입력해 주세요..", Toast.LENGTH_LONG).show();
             else Toast.makeText(getApplicationContext(), "계정 또는 비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
 
-
-            HashMap<String, String> persons = new HashMap<String, String>();
-
-            persons.put(TAG_MAIL, dbaccountMail);
-            persons.put(TAG_PW, dbacccountPw);
-
-            personList.add(persons);
 
 
            /* ListAdapter adapter = new SimpleAdapter(
