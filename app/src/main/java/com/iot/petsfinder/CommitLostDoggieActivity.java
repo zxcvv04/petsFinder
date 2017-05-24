@@ -4,10 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.provider.MediaStore;
 
-/**
- * Created by dd on 2017-05-23.
- */
-
 public class CommitLostDoggieActivity extends Activity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
