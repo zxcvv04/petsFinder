@@ -58,11 +58,15 @@ public class HomeContentFragment extends Fragment
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder>
     {
+
         private static final int LENGTH = 1;
 
         private final String[] mPlaces;
         private final String[] mPlaceDesc;
         private final Drawable[] mPlacePictures;
+
+
+
 
         public ContentAdapter(Context context)
         {
@@ -77,6 +81,7 @@ public class HomeContentFragment extends Fragment
             }
             a.recycle();
         }
+
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
