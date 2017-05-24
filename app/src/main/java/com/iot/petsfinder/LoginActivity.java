@@ -166,6 +166,7 @@ public class LoginActivity extends AppCompatActivity
         // Close The Database
         loginDataBaseAdapter.close();
     }
+
 }
 
 /////db helper

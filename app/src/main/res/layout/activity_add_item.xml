@@ -15,25 +15,26 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView"
-                style="?attr/imageButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:adjustViewBounds="false"
-                android:cropToPadding="false"
-                android:maxHeight="@android:dimen/thumbnail_height"
-                android:maxWidth="@android:dimen/thumbnail_width"
-                android:minHeight="150dp"
-                android:minWidth="150dp"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+            <FrameLayout
+                android:id="@+id/layoutFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
+                <SurfaceView
+                    android:id="@+id/surfaceView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/app_bar_height" />
+            </FrameLayout>
+
+
+            <Button
+                android:id="@+id/btnTakeSnap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="사진찍기" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/textView111"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -61,15 +62,16 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton21"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:layoutDirection="inherit"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/border_collie" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton22"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -77,7 +79,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/boxer" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton23"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -85,7 +87,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/bull_terrier" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton24"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -93,7 +95,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/bulldog" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton25"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -101,7 +103,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/chihuahua" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton26"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -109,7 +111,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/chow_chow" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton16"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -117,7 +119,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/dachshund" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton20"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -125,7 +127,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/doberman" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton19"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -133,7 +135,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/english_bulldog" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton17"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -141,7 +143,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/french_bulldog" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton5"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -149,7 +151,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/poodle" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton18"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -157,7 +159,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/pug" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton31"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -165,7 +167,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/rott_weiler" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton30"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -173,7 +175,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/sheperd" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton29"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -181,7 +183,7 @@
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/shiba_inu" />
 
-                        <ImageButton
+                        <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton27"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
@@ -204,7 +206,7 @@
                     android:id="@+id/textView18"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:text="나이"
                     android:textSize="18sp" />
@@ -213,6 +215,8 @@
                     android:id="@+id/editText11"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="0.5"
                     android:ems="10"
                     android:inputType="textPersonName" />
@@ -227,18 +231,20 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView18"
+                    android:id="@+id/textView181"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:text="성별"
                     android:textSize="18sp" />
 
                 <EditText
-                    android:id="@+id/editText11"
+                    android:id="@+id/editText112"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="0.5"
                     android:ems="10"
                     android:hint="암 / 수 / desex"
@@ -256,7 +262,7 @@
                     android:id="@+id/textView6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:text="연락처"
                     android:textSize="18sp" />
@@ -265,6 +271,8 @@
                     android:id="@+id/editText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="0.5"
                     android:ems="10"
                     android:hint="010-1234-5678"
@@ -282,7 +290,7 @@
                     android:id="@+id/textView16"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:gravity="center"
                     android:text="상세정보"
                     android:textSize="18sp" />
@@ -291,6 +299,8 @@
                     android:id="@+id/editText8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="0.5"
                     android:ems="10"
                     android:hint="기타 정보를 남겨주세요"
