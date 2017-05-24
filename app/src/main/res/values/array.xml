@@ -2,7 +2,7 @@
 
 <resources>
     <string-array name="places">
-        <item>Palais Garnie</item>
+        <item>유기견</item>
         <item>Piazza del Duomo</item>
         <item>Manhattan</item>
         <item>Senso-ji</item>
@@ -10,8 +10,7 @@
         <item>Table Mountain</item>
     </string-array>
     <string-array name="place_desc">
-        <item>The Palais Garnier which locates in Paris was built from 1861 for
-        the Paris Opera.
+        <item>종류 : 진돚개, 나이 : 5살, 성별 : 남, 연락처 : 010-0000-0000
         </item>
         <item>Piazza del Duomo the cathedral which locates in Florence.</item>
         <item>Manhattan is the district in New York City</item>
@@ -20,12 +19,7 @@
         <item>Table Mountain is mountain and park locates in Cape Town, South Africa.</item>
     </string-array>
     <string-array name="place_details">
-        <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-        deserunt mollit anim id est laborum.
+        <item>2012년 출생으로 추정, 2017년 5월 21일 압구정 로데오 골목에서 발견
         </item>
         <item>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
         eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
@@ -64,7 +58,7 @@
         </item>
     </string-array>
     <string-array name="place_locations">
-        <item>8 Rue Scribe, 75009 Paris, France</item>
+        <item>서울시 강남구</item>
         <item>Piazza del Capitolo - 50122 Florence</item>
         <item>New York City</item>
         <item>2-3-1 Asakusa, Taitō-ku, Tokyo, Japan</item>
