@@ -160,12 +160,28 @@
                             app:srcCompat="@drawable/pug" />
 
                         <ImageButton android:background="#00ff0000"
-                            android:id="@+id/imageButton31"
+                            android:id="@+id/imageButton311"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/rott_weiler" />
+
+                        <ImageButton android:background="#00ff0000"
+                            android:id="@+id/imageButton312"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/pit_bull" />
+
+                        <ImageButton android:background="#00ff0000"
+                            android:id="@+id/imageButton313"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/labador_retriever" />
 
                         <ImageButton android:background="#00ff0000"
                             android:id="@+id/imageButton30"
