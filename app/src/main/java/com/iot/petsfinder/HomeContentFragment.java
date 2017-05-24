@@ -65,9 +65,6 @@ public class HomeContentFragment extends Fragment
         private final String[] mPlaceDesc;
         private final Drawable[] mPlacePictures;
 
-
-
-
         public ContentAdapter(Context context)
         {
             Resources resources = context.getResources();

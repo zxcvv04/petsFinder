@@ -36,7 +36,7 @@ public class LoserReportContentFragment extends Fragment
         public TextView age;
         public TextView gender;
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.item_view, parent, false));
+            super(inflater.inflate(R.layout.item_view_array, parent, false));
             image = (ImageView) itemView.findViewById(R.id.img);
             type = (TextView) itemView.findViewById(R.id.type);
             age = (TextView) itemView.findViewById(R.id.age);
