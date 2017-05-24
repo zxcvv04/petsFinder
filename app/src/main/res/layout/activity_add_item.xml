@@ -15,22 +15,30 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/layoutFrame"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-                <SurfaceView
-                    android:id="@+id/surfaceView"
+                <FrameLayout
+                    android:id="@+id/layoutFrame"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/app_bar_height" />
-            </FrameLayout>
+                    android:layout_height="match_parent">
+
+                    <SurfaceView
+                        android:id="@+id/surfaceView"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/app_bar_height" />
+                </FrameLayout>
+            </LinearLayout>
 
 
             <Button
                 android:id="@+id/btnTakeSnap"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="사진찍기" />
 
             <TextView
@@ -38,7 +46,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="품종을 선택해주세요"
@@ -56,160 +63,234 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
+
+                    <!--ViewGroup vg= (ViewGroup) findViewById(R.id.your_layout);-->
+
+                    <!--int iter=0;-->
+                    <!--while(iter<vg.getChildCount()){-->
+                    <!--boolean found=false;-->
+                    <!--View rb=vg.getChildAt(iter);-->
+
+                    <!--if(rb instanceof RadioButton){-->
+                    <!--if(rb.getText().toString().contains(my_string)){//found a pattern-->
+                    <!--vg.removeView(rb);//remove RadioButton-->
+                    <!--found=true;-->
+                    <!--}-->
+                    <!--}-->
+                    <!--if(!found) ++iter;//iterate on the views of the group if the tested view is not a RadioButton; else continue to remove-->
+
+                    <!--}-->
+
                     <LinearLayout
+                        android:id="@+id/layoutdoggieIconList"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
+                            android:id="@+id/imageButton"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_weight="1"
+                            android:background="#00ff0000"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/jindo" />
+
+                        <ImageButton
                             android:id="@+id/imageButton21"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:layoutDirection="inherit"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/border_collie" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton22"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/boxer" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton23"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/bull_terrier" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton24"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/bulldog" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton25"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/chihuahua" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton26"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/chow_chow" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton16"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/dachshund" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton20"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/doberman" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton19"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/english_bulldog" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton17"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/french_bulldog" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton5"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/poodle" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton18"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/pug" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton311"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/rott_weiler" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton312"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/pit_bull" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton313"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/labador_retriever" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton30"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/sheperd" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton29"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/shiba_inu" />
 
-                        <ImageButton android:background="#00ff0000"
+                        <ImageButton
                             android:id="@+id/imageButton27"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:layout_weight="1"
+                            android:background="#00ff0000"
                             android:scaleType="fitCenter"
                             app:srcCompat="@drawable/yorkshire_terrier" />
+
                     </LinearLayout>
                 </HorizontalScrollView>
             </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="center"
+                    android:text="선택하신 품종"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

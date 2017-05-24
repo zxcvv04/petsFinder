@@ -53,6 +53,9 @@ public class AddItemActivity extends AppCompatActivity {
     private AppCompatActivity mActivity;
 
 
+
+
+/////////////// snap shot
     public static void doRestart(Context c) {
         //http://stackoverflow.com/a/22345538
         try {
@@ -95,6 +98,7 @@ public class AddItemActivity extends AppCompatActivity {
             Log.e(TAG, "Was not able to restart application");
         }
     }
+
 
     public void startCamera() {
 
@@ -206,7 +210,6 @@ public class AddItemActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -248,12 +251,12 @@ public class AddItemActivity extends AppCompatActivity {
         }
     };
 
+
     PictureCallback rawCallback = new PictureCallback() {
         public void onPictureTaken(byte[] data, Camera camera) {
             Log.d(TAG, "onPictureTaken - raw");
         }
     };
-
 
     //참고 : http://stackoverflow.com/q/37135675
     PictureCallback jpegCallback = new PictureCallback() {
