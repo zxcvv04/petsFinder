@@ -12,9 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-
         <FrameLayout
-
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:orientation="horizontal">
@@ -24,7 +22,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/abandoneddog3"/>
-
 
             <ImageView
                 android:id="@+id/imageView2"
