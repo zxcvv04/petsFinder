@@ -51,14 +51,13 @@ public class HomeContentFragment extends Fragment
                     context.startActivity(intent);
                 }
             });
-            //itemView.setNextFocusDownId(getAdapterPosition());
-            //itemView.animate().translationX(50).withLayer();
+
         }
     }
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder>
     {
-        private static final int LENGTH = 1;
+        private static final int LENGTH = 2;
 
         private final String[] mPlaces;
         private final String[] mPlaceDesc;
