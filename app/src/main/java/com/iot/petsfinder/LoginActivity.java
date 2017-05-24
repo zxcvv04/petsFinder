@@ -166,6 +166,15 @@ public class LoginActivity extends AppCompatActivity
         // Close The Database
         loginDataBaseAdapter.close();
     }
+
+
+    void camera_test(View v) {
+        Intent intent = new Intent(
+                getApplicationContext(), LoginActivity.class
+        );
+        startActivityForResult(intent, 1);
+    }
+
 }
 
 /////db helper
