@@ -246,6 +246,19 @@ public class LoginActivity extends AppCompatActivity
         );
     }
 
+    protected void btnPassClicked(View v)
+    {
+        Intent intent = new Intent(
+                getApplicationContext(),
+                MainActivity.class
+        );
+
+        startActivityForResult(
+                intent,
+                ACTIVITY_JOIN
+        );
+    }
+
     public void getData(String url)
     {
         class GetDataJSON extends AsyncTask<String, Void, String>
