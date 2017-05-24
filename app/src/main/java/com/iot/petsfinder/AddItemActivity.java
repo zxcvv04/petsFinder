@@ -378,7 +378,6 @@ public class AddItemActivity extends AppCompatActivity {
             if ( hasCameraPermission == PackageManager.PERMISSION_GRANTED
                     && hasWriteExternalStoragePermission == PackageManager.PERMISSION_GRANTED ){
 
-                //이미 퍼미션을 가지고 있음
                 doRestart(this);
             }
             else{
