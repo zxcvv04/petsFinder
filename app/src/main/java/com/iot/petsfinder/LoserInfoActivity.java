@@ -2,8 +2,8 @@ package com.iot.petsfinder;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 
@@ -27,7 +27,8 @@ public class LoserInfoActivity extends AppCompatActivity
         mRecyclerView.setAdapter(adapter);
 
         // 이 부분에서 정렬 방식을 설정합니다.
-        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mLayoutManager = new GridLayoutManager(this, 2);
+        //mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new AlbumAdapter(albums);
