@@ -1,9 +1,11 @@
 package com.iot.petsfinder;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -88,8 +90,8 @@ public class SignUpActivity extends AppCompatActivity
                         dbacccountPw = c.getString(TAG_PW);
 
 
-                        if (userName.equals(dbaccountMail)
-                                && password.equals(dbacccountPw)) isAuth = true;
+                        if (userName.equals(dbaccountMail) && password.equals(dbacccountPw) && confirmPassword.equals(password))
+                            isAuth = true;
                     }
 
 
@@ -97,14 +99,17 @@ public class SignUpActivity extends AppCompatActivity
                     {
                         Toast.makeText(getApplicationContext(), "동일한 계정이 있습니다.", Toast.LENGTH_LONG).show();
                     }
-                    else if (userName.equals("") || password.equals(""))
+                    else if (userName.equals("") || password.equals ("") || confirmPassword.equals(""))
                             Toast.makeText(getApplicationContext(), "값을 입력해 주세요..", Toast.LENGTH_LONG).show();
-                    else if ((userName!=null) && (password!=null))
+                    else if ((userName!="") && (password!="") && confirmPassword.equals(password))
                         {
                             insertToDatabase(userName, password);
                             Toast.makeText(getApplicationContext(), "계정이 만들어졌습니다.",Toast.LENGTH_LONG).show();
 
-                            finish();
+
+
+                            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                            startActivity(intent);
                         }
 
 
@@ -284,6 +289,13 @@ Toast.LENGTH_LONG).show();
         InsertData task = new InsertData();
         task.execute(_mail, _pw);
     }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("TestAppActivity", "onRestart");
+    }
+
+
 
 
 }

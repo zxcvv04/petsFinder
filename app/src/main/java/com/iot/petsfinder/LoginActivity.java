@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -56,9 +57,12 @@ public class LoginActivity extends AppCompatActivity
 
     String dbaccountMail, dbacccountPw;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        onRestart();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -158,6 +162,7 @@ public class LoginActivity extends AppCompatActivity
                 startActivityForResult(intent, ACTIVITY_MAIN);
 
                 Toast.makeText(getApplicationContext(), "로그인.", Toast.LENGTH_LONG).show();
+
             } else if (userName.equals("") || password.equals(""))
                 Toast.makeText(getApplicationContext(), "값을 입력해 주세요..", Toast.LENGTH_LONG).show();
             else Toast.makeText(getApplicationContext(), "계정 또는 비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
@@ -285,6 +290,11 @@ public class LoginActivity extends AppCompatActivity
         }
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("TestAppActivity", "onRestart");
     }
 
 }
