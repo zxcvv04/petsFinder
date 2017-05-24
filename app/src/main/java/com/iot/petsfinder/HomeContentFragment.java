@@ -51,12 +51,13 @@ public class HomeContentFragment extends Fragment
                     context.startActivity(intent);
                 }
             });
+            //itemView.setNextFocusDownId(getAdapterPosition());
+            //itemView.animate().translationX(50).withLayer();
         }
     }
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder>
     {
-        // Set numbers of Card in RecyclerView.
         private static final int LENGTH = 1;
 
         private final String[] mPlaces;
@@ -94,7 +95,7 @@ public class HomeContentFragment extends Fragment
         @Override
         public int getItemCount()
         {
-            return LENGTH;
+             return LENGTH;
         }
     }
 }
