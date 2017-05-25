@@ -17,7 +17,7 @@ public class LostListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loser_info);
+        setContentView(R.layout.activity_lost_list);
 
         /*mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
