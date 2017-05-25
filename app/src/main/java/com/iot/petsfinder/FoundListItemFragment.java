@@ -1,6 +1,7 @@
 package com.iot.petsfinder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -40,6 +41,17 @@ public class FoundListItemFragment extends Fragment
             type = (TextView) itemView.findViewById(R.id.type);
             age = (TextView) itemView.findViewById(R.id.age);
             gender = (TextView) itemView.findViewById(R.id.gender);
+            itemView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, Detail.class);
+                    intent.putExtra(Detail.EXTRA_POSITION, getAdapterPosition());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 

@@ -57,7 +57,7 @@ public class HomeContentFragment extends Fragment
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder>
     {
 
-        private static final int LENGTH = 3;
+        private static final int LENGTH = 2;
 
         private final String[] mPlaces;
         private final String[] mPlaceDesc;
