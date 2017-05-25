@@ -19,7 +19,7 @@ public class LoserInfoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loser_info);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        /*mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
         ArrayList<Album> albums = loadData();
 
@@ -27,11 +27,18 @@ public class LoserInfoActivity extends AppCompatActivity
         mRecyclerView.setAdapter(adapter);
 
         // 이 부분에서 정렬 방식을 설정합니다.
-        mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mLayoutManager = new GridLayoutManager(this, 2);
+        //mLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new AlbumAdapter(albums);
-       mRecyclerView.setAdapter(mAdapter);
+       mRecyclerView.setAdapter(mAdapter);*/
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL));
+        ArrayList<Album> albums = loadData();
+        AlbumAdapter adapter = new AlbumAdapter(albums);
+        recyclerView.setAdapter(adapter);
 
     }
 
