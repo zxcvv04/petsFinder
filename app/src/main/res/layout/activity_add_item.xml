@@ -12,7 +12,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -35,8 +35,8 @@
 
                         <SurfaceView
                             android:id="@+id/surfaceView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="@android:dimen/thumbnail_width"
                             android:layout_gravity="center"
                             android:minHeight="@dimen/card_image_height"
                             android:minWidth="@dimen/card_image_height" />
@@ -336,6 +336,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="btnAttachFoundListClicked"
                         android:text="찾아가세요" />
 
                     <Button
@@ -343,6 +344,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:onClick="btnAttachLostListClicked"
                         android:text="찾습니다" />
                 </LinearLayout>
             </LinearLayout>

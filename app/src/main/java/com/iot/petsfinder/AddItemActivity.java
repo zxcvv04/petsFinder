@@ -1,5 +1,6 @@
 package com.iot.petsfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,6 +14,8 @@ import java.util.List;
 public class AddItemActivity extends AppCompatActivity {
 
 
+    private static final int ACTIVITY_FOUNDLIST = 1007;
+    private static final int ACTIVITY_LOSTLIST = 1008;
     TextView txtVSelectedDoggyFamily;
     EditText edtxtDogAge, edtxtDogSex, edtxtContactInfo, edtxtDetails;
     Button btnAttachLostList, btnAttachFoundList;
@@ -66,6 +69,23 @@ public class AddItemActivity extends AppCompatActivity {
     }
     //region
 
+    protected void btnAttachFoundListClicked (View v) {
+
+        //////TODO insert db data
+
+        Intent intent = new Intent(getApplicationContext(),
+                PetsInfoActivity.class);
+        startActivityForResult(intent, ACTIVITY_FOUNDLIST);
+    }
+
+    protected void btnAttachLostListClicked (View v) {
+
+        //////TODO insert db data
+
+        Intent intent = new Intent(getApplicationContext(),
+                LoserInfoActivity.class);
+        startActivityForResult(intent, ACTIVITY_LOSTLIST);
+    }
 
     ////입력된 값 String으로 받음 ( 사진제외 )
     public List<String> getInputedStrings () {
