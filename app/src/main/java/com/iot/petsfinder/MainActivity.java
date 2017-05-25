@@ -124,8 +124,8 @@ public class MainActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new HomeContentFragment(), "메인");
-        adapter.addFragment(new LoserReportContentFragment(), "실종동물 찾습니다.");
-        adapter.addFragment(new FinderReportContentFragment(), "보호 중입니다.");
+        adapter.addFragment(new LostListItemFragment(), "실종동물 찾습니다.");
+        adapter.addFragment(new FoundListItemFragment(), "보호 중입니다.");
         viewPager.setAdapter(adapter);
     }
 

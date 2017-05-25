@@ -167,11 +167,70 @@ public class LoginActivity extends AppCompatActivity
                 Toast.makeText(getApplicationContext(), "값을 입력해 주세요..", Toast.LENGTH_LONG).show();
             else Toast.makeText(getApplicationContext(), "계정 또는 비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
 
+
+
+           /* ListAdapter adapter = new SimpleAdapter(
+                    MainActivity.this, personList, R.layout.list_item,
+                    new String[]{TAG_LOGINNUM,TAG_MAIL,TAG_PW},
+                    new int[]{R.id.id, R.id.name, R.id.address}
+            );
+
+            list.setAdapter(adapter);*/
+
         } catch (JSONException e)
         {
             e.printStackTrace();
         }
 
+        // check if the Stored password matches with  Password entered by user
+        /*if (password.equals(storedPassword))
+        {
+            Intent intent = new Intent(
+                    getApplicationContext(),
+                    MainActivity.class
+            );
+            ComponentName name = new ComponentName(
+                    "com.iot.petsfinder",
+                    "com.iot.petsfinder.MainActivity"
+            );
+
+            intent.setComponent(name);
+            Parcelables parcel = new Parcelables(SelectId);
+            intent.putExtra("parcel", parcel);
+            startActivityForResult(intent, ACTIVITY_MAIN);
+        } else
+        {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "로그인에 실패했습니다.",
+                    Toast.LENGTH_LONG).show();
+        }*/
+
+//        if(LoginId.equals(userName)&&LoginPw.equals(password))
+//        {
+//            SelectId=LoginId;
+//
+//            Intent intent = new Intent(
+//                    getApplicationContext(),
+//                    MainActivity.class
+//            );
+//
+//            ComponentName name = new ComponentName(
+//                    "com.iot.petsfinder",
+//                    "com.iot.petsfinder.MainActivity"
+//            );
+//
+//            intent.setComponent(name);
+//            Parcelables parcel = new Parcelables(SelectId);
+//            intent.putExtra("parcel", parcel);
+//            startActivityForResult(intent, ACTIVITY_MAIN);
+//        }
+//        else { ///fail to login
+//            Toast.makeText(
+//                    getApplicationContext(),
+//                    "로그인에 실패했습니다.",
+//                    Toast.LENGTH_LONG).show();
+//        }
     }
 
     protected void btnJoin(View v)
@@ -237,4 +296,67 @@ public class LoginActivity extends AppCompatActivity
         super.onRestart();
         Log.d("TestAppActivity", "onRestart");
     }
+
 }
+    /*@Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Close The Database
+        loginDataBaseAdapter.close();
+    }*/
+
+
+/////db helper
+//    private class DatabaseHelper extends SQLiteOpenHelper {
+//
+//        DatabaseHelper(Context context) {
+//            super(context, DB_NAME, null, DB_VERSION);
+//        }
+//
+//        @Override
+//        public void onCreate(SQLiteDatabase db) {
+//            try {
+//                String DROP_SQL = "drop table if exists " + TABLE_NAME;
+//                db.execSQL(DROP_SQL);
+//            } catch (Exception e) { ErrLogger(e); }
+//
+//            String CREATE_SQL = "create table " + TABLE_NAME + " (" +
+//                    " mail text PRIMARY KEY, " +
+//                    " pw text )";
+//
+//            try { db.execSQL(CREATE_SQL); } catch (Exception e) { ErrLogger(e); }
+//
+//        }
+//        @Override
+//        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//            Log.w(TAG, "upgrading database version from " + oldVersion + " to " + newVersion);
+//        }
+//
+//        void ErrLogger(Exception e) {
+//            e.printStackTrace();
+//            Log.e(TAG, e.getMessage());
+//        }
+//
+//    }
+//
+//    ///// launch db
+//    private boolean getDB() {
+//        Log.w(TAG, "open db");
+//        dbHelper = new DatabaseHelper(this);
+//        db = dbHelper.getWritableDatabase();
+//        return true;
+//    }
+//
+//    ///// query id, pw
+//    private boolean getAuth(String userName, String password){
+//        if (userName == null || password == null) return false;
+//        Cursor _cursorQryResult = db.rawQuery("select * from " + TABLE_NAME +
+//        " where id = " + userName +
+//        " and pw = " + password, null);
+//
+//        if (_cursorQryResult.getCount() == 1) {
+//            _cursorQryResult.close();
+//            return true;
+//        }
+//        else { _cursorQryResult.close(); return false; }
+//    }
