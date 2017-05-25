@@ -3,6 +3,9 @@ package com.iot.petsfinder;
 public class Doggy
 {
 
+
+
+
     private int imageId;
 
     public int getImageId()

@@ -1,12 +1,6 @@
 package com.iot.petsfinder;
 
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -16,57 +10,31 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Blob;
 import java.util.ArrayList;
-//
-//<<<<<<<HEAD
-//        =======
-//        >>>>>>>origin/master
 
-public class PetsInfoActivity extends AppCompatActivity
-{
+/**
+ * Created by dd on 2017-05-25.
+ */
+
+public class DBDoggy {
+
+    private final static int ACTIVITY_ADDITEM = 1006;
+    private final static String DB_URL_LOGIN = "http://122.44.13.91:11057/ddddddddd";
     private static final String TAG_DOG_TYPE = "type";
     private static final String TAG_DOG_GENDER = "gender";
     private static final String TAG_DOG_AGE = "age";
     private static final String TAG_DOG_ISLOST = "islost";
-    private CardView _cardView;
-    private RecyclerView _recyclerView;
-    private String myJSON;
-//<<<<<<< HEAD
-    private final static int ACTIVITY_ADDITEM = 1006;
     private static final String TAG_RESULTS = "result";
-    private final static String DB_URL_LOGIN = "http://122.44.13.91:11057/ddddddddd";
-//=======
-//>>>>>>> origin/master
+    private String date, type, age, gender, phonenum, detailinfo, islost;
+    private Blob image;
 
-    ArrayList<Doggy> doggies;
+    private String myJSON;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pets_info);
-
-        _recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-
-//<<<<<<< HEAD
-        ArrayList<Doggy> doggies = loadData();
-//        ArrayList<Doggy> lostDoggyList = new ArrayList<>();
-//        ArrayList<Doggy> foundDoggyList = new ArrayList<>();
+    ArrayList<Doggy> DoggyList = new ArrayList<>();
 
 
-        AlbumAdapter adapter = new AlbumAdapter(doggies);
-        _recyclerView.setAdapter(adapter);
-
-        RecyclerView.LayoutManager layoutManager =
-                new LinearLayoutManager(getApplicationContext());
-        _recyclerView.setLayoutManager(layoutManager);
-        _recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-    }
-
-
-    //// list binding
-    private ArrayList<Doggy> loadData() {
+    private void loadData() {
 
         getData(DB_URL_LOGIN);
 
@@ -76,60 +44,30 @@ public class PetsInfoActivity extends AppCompatActivity
 
             for (int i = 0; i < doggyList.length(); i++) {
                 JSONObject _tmpJson = doggyList.getJSONObject(i);
+                Doggy doggy = new Doggy();
 
-                if (_tmpJson.getString(TAG_DOG_ISLOST).equals("1")) {
-                    Doggy doggy = new Doggy();
+                //TODO :::image inflat
+                doggy.setImageId(R.drawable.dogsub2);
+                doggy.setType("종류" + _tmpJson.getString(TAG_DOG_TYPE));
+                doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
+                doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
 
-//                doggy.setImageId(R.drawable.dogsub2);
-                    doggy.setType("종류" + _tmpJson.getString(TAG_DOG_TYPE));
-                    doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
-                    doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
-
-                    doggies.add(doggy);
-                }
                 //when the doggy is lost attach to lost doggy list
-//                if (_tmpJson.getString(TAG_DOG_ISLOST).equals("1"))
-//                    lostDoggyList.add(doggy);
-//                else foundDoggyList.add(doggy);
+                if (_tmpJson.getString(TAG_DOG_ISLOST).equals("1"))
+                    DoggyList.add(doggy);
+                else DoggyList.add(doggy);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("ee", e.getMessage());
         }
-
-        return doggies;
     }
-//=======
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-//        _recyclerView.setLayoutManager(layoutManager);
-//        _recyclerView.setItemAnimator(new DefaultItemAnimator());
-//
-//        _cardView=(CardView) findViewById(R.id.card_view);
-//
-//        _recyclerView.setOnClickListener(
-//                new View.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(View v)
-//                    {
-//                        _recyclerView.setClickable(true);
-//                        Toast.makeText(
-//                                getApplicationContext(),
-//                                "항목이 선택되었습니다.",
-//                                Toast.LENGTH_SHORT
-//                        ).show();
-//                    }
-//                }
-//        );
-////>>>>>>> origin/master
-//    }
 
-    //// get json from db
+
+
     public void getData(String url) {
         class GetDataJSON extends AsyncTask<String, Void, String> {
-
-            private String myJSON;
 
             @Override
             protected String doInBackground(String... params) {
@@ -173,20 +111,11 @@ public class PetsInfoActivity extends AppCompatActivity
 //        class InsertData extends AsyncTask<String, Void, String> {
 //            private ProgressDialog loading;
 //
-//            @Override
-//            protected void onPreExecute() {
-//                super.onPreExecute();
-//
-//                loading = ProgressDialog.show(PetsInfoActivity.this,
-//                        "Please Wait", null, true, true);
-//            }
 //
 //            @Override
 //            protected void onPostExecute(String s) {
 //                super.onPostExecute(s);
-//
 //                loading.dismiss();
-//                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
 //            }
 //
 //            @Override
@@ -231,5 +160,4 @@ public class PetsInfoActivity extends AppCompatActivity
 //        InsertData task = new InsertData();
 //        task.execute(_mail, _pw);
 //    }
-
 }
