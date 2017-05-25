@@ -1,13 +1,10 @@
 package com.iot.petsfinder;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import java.util.ArrayList;
 
@@ -20,7 +17,7 @@ public class PetsInfoActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pets_info_floatbtn);
+        setContentView(R.layout.activity_pets_info);
 
         _recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
@@ -32,19 +29,6 @@ public class PetsInfoActivity extends AppCompatActivity
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         _recyclerView.setLayoutManager(layoutManager);
         _recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        FloatingActionButton fabInFoundList =
-                (FloatingActionButton) findViewById(R.id.fabInFoundList);
-        fabInFoundList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(
-                        getApplicationContext(),
-                        AddItemActivity.class
-                );
-                startActivityForResult(intent, ACTIVITY_ADDITEM);
-            }
-        });
 
     }
 
