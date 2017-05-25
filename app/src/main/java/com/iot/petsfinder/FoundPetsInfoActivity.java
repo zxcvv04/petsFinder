@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -21,13 +22,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 //
 //<<<<<<<HEAD
 //        =======
 //        >>>>>>>origin/master
 
-public class PetsInfoActivity extends AppCompatActivity
+public class FoundPetsInfoActivity extends AppCompatActivity
 {
     private static final String TAG_DOG_VAR = "type";
     private static final String TAG_DOG_GENDER = "gender";
@@ -43,8 +43,6 @@ public class PetsInfoActivity extends AppCompatActivity
 //=======
 //>>>>>>> origin/master
 
-    ArrayList<Doggy> doggies;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,24 +52,24 @@ public class PetsInfoActivity extends AppCompatActivity
         _recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
 //<<<<<<< HEAD
-        ArrayList<Doggy> doggies = loadData();
+//        ArrayList<Doggy> doggies = loadData();
 //        ArrayList<Doggy> lostDoggyList = new ArrayList<>();
 //        ArrayList<Doggy> foundDoggyList = new ArrayList<>();
 
 
-        AlbumAdapter adapter = new AlbumAdapter(doggies);
-        _recyclerView.setAdapter(adapter);
-
-        RecyclerView.LayoutManager layoutManager =
-                new LinearLayoutManager(getApplicationContext());
-        _recyclerView.setLayoutManager(layoutManager);
-        _recyclerView.setItemAnimator(new DefaultItemAnimator());
+//        AlbumAdapter adapter = new AlbumAdapter(doggies);
+//        _recyclerView.setAdapter(adapter);
+//
+//        RecyclerView.LayoutManager layoutManager =
+//                new LinearLayoutManager(getApplicationContext());
+//        _recyclerView.setLayoutManager(layoutManager);
+//        _recyclerView.setItemAnimator(new DefaultItemAnimator());
 
     }
 
 
     //// list binding
-    private ArrayList<Doggy> loadData() {
+    private void loadData() {
 
         getData(DB_URL_LOGIN);
 
@@ -89,8 +87,6 @@ public class PetsInfoActivity extends AppCompatActivity
                 doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
                 doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
 
-                doggies.add(doggy);
-
                 //when the doggy is lost attach to lost doggy list
 //                if (_tmpJson.getString(TAG_DOG_ISLOST).equals("1"))
 //                    lostDoggyList.add(doggy);
@@ -102,32 +98,31 @@ public class PetsInfoActivity extends AppCompatActivity
             Log.e("ee", e.getMessage());
         }
 
-        return doggies;
-    }
+//        return albums;
 //=======
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-//        _recyclerView.setLayoutManager(layoutManager);
-//        _recyclerView.setItemAnimator(new DefaultItemAnimator());
-//
-//        _cardView=(CardView) findViewById(R.id.card_view);
-//
-//        _recyclerView.setOnClickListener(
-//                new View.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(View v)
-//                    {
-//                        _recyclerView.setClickable(true);
-//                        Toast.makeText(
-//                                getApplicationContext(),
-//                                "항목이 선택되었습니다.",
-//                                Toast.LENGTH_SHORT
-//                        ).show();
-//                    }
-//                }
-//        );
-////>>>>>>> origin/master
-//    }
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        _recyclerView.setLayoutManager(layoutManager);
+        _recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        _cardView=(CardView) findViewById(R.id.card_view);
+
+        _recyclerView.setOnClickListener(
+                new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        _recyclerView.setClickable(true);
+                        Toast.makeText(
+                                getApplicationContext(),
+                                "항목이 선택되었습니다.",
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                }
+        );
+//>>>>>>> origin/master
+    }
 
     //// get json from db
     public void getData(String url) {
@@ -181,7 +176,7 @@ public class PetsInfoActivity extends AppCompatActivity
             protected void onPreExecute() {
                 super.onPreExecute();
 
-                loading = ProgressDialog.show(PetsInfoActivity.this,
+                loading = ProgressDialog.show(FoundPetsInfoActivity.this,
                         "Please Wait", null, true, true);
             }
 
