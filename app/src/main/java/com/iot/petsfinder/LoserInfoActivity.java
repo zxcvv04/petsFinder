@@ -1,11 +1,16 @@
 package com.iot.petsfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 
 import java.util.ArrayList;
+
+import static com.iot.petsfinder.Detail.ACTIVITY_ADDITEM;
 
 public class LoserInfoActivity extends AppCompatActivity
 {
@@ -17,7 +22,7 @@ public class LoserInfoActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_loser_info);
+        setContentView(R.layout.activity_loser_info_floatbtn);
 
         /*mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
@@ -39,6 +44,19 @@ public class LoserInfoActivity extends AppCompatActivity
         ArrayList<Album> albums = loadData();
         AlbumAdapter adapter = new AlbumAdapter(albums);
         recyclerView.setAdapter(adapter);
+
+        FloatingActionButton fabInLostList =
+                (FloatingActionButton) findViewById(R.id.fabInLostList);
+        fabInLostList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        AddItemActivity.class
+                );
+                startActivityForResult(intent, ACTIVITY_ADDITEM);
+            }
+        });
 
     }
 

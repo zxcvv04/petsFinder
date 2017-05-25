@@ -117,13 +117,6 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnPass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="btnPassClicked"
-        android:text="break Thorgh for test" />
-
 </LinearLayout>
 
 
