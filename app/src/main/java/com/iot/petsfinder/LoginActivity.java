@@ -69,27 +69,29 @@ public class LoginActivity extends AppCompatActivity {
     protected void imageRotation() {
         final Handler handler = new Handler();
 
-        handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    handler.postDelayed(this, 2000);
+        handler.postDelayed(
+                new Runnable() {
 
-                                    count++;
-                                    if ((count % 3) == 1) {
-                                        imageView03.setVisibility(View.GONE);
-                                        imageView02.setVisibility(View.VISIBLE);
-                                        imageView01.setVisibility(View.GONE);
-                                    } else if ((count % 3) == 2) {
-                                        imageView03.setVisibility(View.VISIBLE);
-                                        imageView02.setVisibility(View.GONE);
-                                        imageView01.setVisibility(View.GONE);
-                                    } else if ((count % 3) == 0) {
-                                        imageView03.setVisibility(View.GONE);
-                                        imageView02.setVisibility(View.GONE);
-                                        imageView01.setVisibility(View.VISIBLE);
-                                    }
-                                }
-                            }
+                    @Override
+                    public void run() {
+                        handler.postDelayed(this, 2000);
+
+                        count++;
+                        if ((count % 3) == 1) {
+                            imageView03.setVisibility(View.GONE);
+                            imageView02.setVisibility(View.VISIBLE);
+                            imageView01.setVisibility(View.GONE);
+                        } else if ((count % 3) == 2) {
+                            imageView03.setVisibility(View.VISIBLE);
+                            imageView02.setVisibility(View.GONE);
+                            imageView01.setVisibility(View.GONE);
+                        } else if ((count % 3) == 0) {
+                            imageView03.setVisibility(View.GONE);
+                            imageView02.setVisibility(View.GONE);
+                            imageView01.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
                 , 2000);
     }
 
@@ -117,7 +119,8 @@ public class LoginActivity extends AppCompatActivity {
                 dbacccountPw = c.getString(TAG_PW);
 
                 if (userName.equals(dbaccountMail)
-                        && password.equals(dbacccountPw)) isAuth = true;
+                        && password.equals(dbacccountPw))
+                    isAuth = true;
             }
 
             if (isAuth) {
@@ -125,22 +128,29 @@ public class LoginActivity extends AppCompatActivity {
                         getApplicationContext(),
                         MainActivity.class
                 );
-                ComponentName name = new ComponentName(
-                        "com.iot.petsfinder",
-                        "com.iot.petsfinder.MainActivity"
-                );
+                ComponentName name =
+                        new ComponentName("com.iot.petsfinder",
+                                "com.iot.petsfinder.MainActivity"
+                        );
 
                 intent.setComponent(name);
                 Parcelables parcel = new Parcelables(SelectId);
                 intent.putExtra("parcel", parcel);
                 startActivityForResult(intent, ACTIVITY_MAIN);
 
-                Toast.makeText(getApplicationContext(), "로그인.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        dbaccountMail.replaceAll("@.*", "")
+                                + "님\n로그인 하셨습니다.",
+                        Toast.LENGTH_LONG).show();
 
             } else if (userName.equals("") || password.equals(""))
-                Toast.makeText(getApplicationContext(), "값을 입력해 주세요..", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        "값을 입력해 주세요..",
+                        Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(getApplicationContext(), "계정 또는 비밀번호가 다릅니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),
+                        "계정 또는 비밀번호가 다릅니다.",
+                        Toast.LENGTH_LONG).show();
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -165,7 +175,8 @@ public class LoginActivity extends AppCompatActivity {
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
                     StringBuilder StringBuldr = new StringBuilder();
 
-                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    bufferedReader = new BufferedReader(
+                            new InputStreamReader(con.getInputStream()));
 
                     String json;
                     while ((json = bufferedReader.readLine()) != null) {
@@ -177,8 +188,6 @@ public class LoginActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     return null;
                 }
-
-
             }
 
             @Override
