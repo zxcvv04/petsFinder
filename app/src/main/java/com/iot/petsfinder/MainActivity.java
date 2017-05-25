@@ -21,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         if (supportActionBar != null) {
             VectorDrawableCompat indicator
                     = VectorDrawableCompat.create(getResources(), R.drawable.menu, getTheme());
-            indicator.setTint(ResourcesCompat.getColor(getResources(),R.color.white,getTheme()));
+            indicator.setTint(ResourcesCompat.getColor(getResources(),R.color.dark,getTheme()));
             supportActionBar.setHomeAsUpIndicator(indicator);
             supportActionBar.setDisplayHomeAsUpEnabled(true);
         }
@@ -72,7 +73,19 @@ public class MainActivity extends AppCompatActivity
                         // TODO: handle navigation
 
                         // Closing drawer on item click
-                        drawerLayout.closeDrawers();
+                        int id=menuItem.getItemId();
+                        switch (id){
+                            case R.id.item1:
+                                drawerLayout.closeDrawers();
+                                break;
+                            case R.id.item2:
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "공유되었습니다.",
+                                        Toast.LENGTH_LONG
+                                ).show();
+                                break;
+                        }
                         return true;
                     }
                 });
