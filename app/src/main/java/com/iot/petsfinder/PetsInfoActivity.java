@@ -1,16 +1,20 @@
 package com.iot.petsfinder;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 
 public class PetsInfoActivity extends AppCompatActivity
 {
     private RecyclerView _recyclerView;
+    private final static int ACTIVITY_ADDITEM = 1006;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,6 +32,20 @@ public class PetsInfoActivity extends AppCompatActivity
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         _recyclerView.setLayoutManager(layoutManager);
         _recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        FloatingActionButton fabInFoundList =
+                (FloatingActionButton) findViewById(R.id.fabInFoundList);
+        fabInFoundList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        AddItemActivity.class
+                );
+                startActivityForResult(intent, ACTIVITY_ADDITEM);
+            }
+        });
+
     }
 
     private ArrayList<Album> loadData()
