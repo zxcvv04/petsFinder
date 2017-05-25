@@ -25,21 +25,24 @@ public class HomeContentFragment extends Fragment
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return recyclerView;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        public ImageView picture;
-        public TextView name;
-        public TextView description;
+        ImageView image;
+        TextView type;
+        TextView age;
+        TextView gender;
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent)
         {
             super(inflater.inflate(R.layout.activity_home, parent, false));
-            picture = (ImageView) itemView.findViewById(R.id.card_image);
-            name = (TextView) itemView.findViewById(R.id.card_title);
-            description = (TextView) itemView.findViewById(R.id.card_text);
+            image = (ImageView) itemView.findViewById(R.id.img);
+            type = (TextView) itemView.findViewById(R.id.type);
+            age = (TextView) itemView.findViewById(R.id.age);
+            gender = (TextView) itemView.findViewById(R.id.gender);
             itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
@@ -57,22 +60,23 @@ public class HomeContentFragment extends Fragment
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder>
     {
 
-        private static final int LENGTH = 3;
+        private static final int LENGTH = 2;
 
-        private final String[] mPlaces;
-        private final String[] mPlaceDesc;
-        private final Drawable[] mPlacePictures;
+        private final Drawable[] image;
+        private final String[] type;
+        private final String[] age;
+        private final String[] gender;
 
         public ContentAdapter(Context context)
         {
             Resources resources = context.getResources();
-            mPlaces = resources.getStringArray(R.array.places);
-            mPlaceDesc = resources.getStringArray(R.array.place_desc);
-            TypedArray a = resources.obtainTypedArray(R.array.places_picture);
-            mPlacePictures = new Drawable[a.length()];
-            for (int i = 0; i < mPlacePictures.length; i++)
-            {
-                mPlacePictures[i] = a.getDrawable(i);
+            type = resources.getStringArray(R.array.places);
+            age = resources.getStringArray(R.array.place_details);
+            gender = resources.getStringArray(R.array.place_desc);
+            TypedArray a = resources.obtainTypedArray(R.array.place_avator);
+            image = new Drawable[a.length()];
+            for (int i = 0; i < image.length; i++) {
+                image[i] = a.getDrawable(i);
             }
             a.recycle();
         }
@@ -86,9 +90,10 @@ public class HomeContentFragment extends Fragment
         @Override
         public void onBindViewHolder(ViewHolder holder, int position)
         {
-            holder.picture.setImageDrawable(mPlacePictures[position % mPlacePictures.length]);
-            holder.name.setText(mPlaces[position % mPlaces.length]);
-            holder.description.setText(mPlaceDesc[position % mPlaceDesc.length]);
+            holder.image.setImageDrawable(image[position % image.length]);
+            holder.type.setText(type[position % type.length]);
+            holder.age.setText(age[position % age.length]);
+            holder.gender.setText(gender[position % gender.length]);
         }
 
         @Override

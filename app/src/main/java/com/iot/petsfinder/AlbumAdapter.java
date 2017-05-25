@@ -14,14 +14,14 @@ import java.util.ArrayList;
 
 public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>
 {
-    private ArrayList<Album> _albums;
+    private ArrayList<Doggy> _doggies;
 
     private Context context;
-    private ArrayList<Album> items;
+    private ArrayList<Doggy> items;
     private int lastPosition = -1;
 
-    public AlbumAdapter(ArrayList<Album> albums){
-        _albums=albums;
+    public AlbumAdapter(ArrayList<Doggy> doggies){
+        _doggies = doggies;
     }
 
     @Override
@@ -35,11 +35,11 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position)
     {
-        Album album = _albums.get(position);
-        holder.albumImage.setBackgroundResource(album.getImageId());
-        holder.albumType.setText(album.getType());
-        holder.albumAge.setText(album.getAge());
-        holder.albumGender.setText(album.getGender());
+        Doggy doggy = _doggies.get(position);
+        holder.albumImage.setBackgroundResource(doggy.getImageId());
+        holder.albumType.setText(doggy.getType());
+        holder.albumAge.setText(doggy.getAge());
+        holder.albumGender.setText(doggy.getGender());
 
         setAnimation(holder.albumImage, position);
     }
@@ -47,7 +47,7 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>
     @Override
     public int getItemCount()
     {
-        return _albums.size();
+        return _doggies.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

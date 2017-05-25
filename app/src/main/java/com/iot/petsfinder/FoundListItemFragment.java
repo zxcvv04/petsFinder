@@ -1,6 +1,7 @@
 package com.iot.petsfinder;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -29,21 +30,32 @@ public class FoundListItemFragment extends Fragment
         return recyclerView;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView image;
-        public TextView type;
-        public TextView age;
-        public TextView gender;
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+    static class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView image;
+        TextView type;
+        TextView age;
+        TextView gender;
+        ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_view, parent, false));
             image = (ImageView) itemView.findViewById(R.id.img);
             type = (TextView) itemView.findViewById(R.id.type);
             age = (TextView) itemView.findViewById(R.id.age);
             gender = (TextView) itemView.findViewById(R.id.gender);
+            itemView.setOnClickListener(new View.OnClickListener()
+            {
+                @Override
+                public void onClick(View v)
+                {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, Detail.class);
+                    intent.putExtra(Detail.EXTRA_POSITION, getAdapterPosition());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 
-    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
+    private static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 18;
         private final Drawable[] image;
@@ -51,7 +63,7 @@ public class FoundListItemFragment extends Fragment
         private final String[] age;
         private final String[] gender;
 
-        public ContentAdapter(Context context) {
+        ContentAdapter(Context context) {
             Resources resources = context.getResources();
             type = resources.getStringArray(R.array.places);
             age = resources.getStringArray(R.array.place_details);

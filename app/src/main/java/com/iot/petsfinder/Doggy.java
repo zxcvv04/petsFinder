@@ -1,6 +1,6 @@
 package com.iot.petsfinder;
 
-public class Album
+public class Doggy
 {
 
     private int imageId;
@@ -27,14 +27,14 @@ public class Album
         this.type = type;
     }
 
-    private int age;
+    private String age;
 
-    public int getAge()
+    public String getAge()
     {
         return age;
     }
 
-    public void setAge(int age)
+    public void setAge(String age)
     {
         this.age = age;
     }
