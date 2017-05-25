@@ -2,16 +2,26 @@ package com.iot.petsfinder;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
+import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +31,8 @@ public class MainActivity extends AppCompatActivity
 {
     TextView textView01;
     TextView textView02;
+
+    private DrawerLayout drawerLayout;
 
     String str;
 
@@ -37,6 +49,55 @@ public class MainActivity extends AppCompatActivity
         setupViewPager(viewPager);
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
+
+        ActionBar supportActionBar = getSupportActionBar();
+        if (supportActionBar != null) {
+            VectorDrawableCompat indicator
+                    = VectorDrawableCompat.create(getResources(), R.drawable.menu, getTheme());
+            indicator.setTint(ResourcesCompat.getColor(getResources(),R.color.dark,getTheme()));
+            supportActionBar.setHomeAsUpIndicator(indicator);
+            supportActionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        // Set behavior of Navigation drawer
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    // This method will trigger on item Click of navigation menu
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        // Set item in checked state
+                        menuItem.setChecked(true);
+
+                        // TODO: handle navigation
+
+                        // Closing drawer on item click
+                        int id=menuItem.getItemId();
+                        switch (id){
+                            case R.id.item1:
+                                drawerLayout.closeDrawers();
+                                break;
+                            case R.id.item2:
+                                Toast.makeText(
+                                        getApplicationContext(),
+                                        "공유되었습니다.",
+                                        Toast.LENGTH_LONG
+                                ).show();
+                                break;
+                        }
+                        return true;
+                    }
+                });
+        // Adding Floating Action Button to bottom right of main view
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Snackbar.make(v, "Hello Snackbar!",
+                        Snackbar.LENGTH_LONG).show();
+            }
+        });
 
         Intent intent = getIntent();
         if (intent != null)
@@ -103,6 +164,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        }else if (id == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
         }
         return super.onOptionsItemSelected(item);
     }
