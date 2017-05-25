@@ -83,7 +83,7 @@ public class AddItemActivity extends AppCompatActivity {
         //////TODO insert db data
 
         Intent intent = new Intent(getApplicationContext(),
-                LostListActivity.class);
+                PetsInfoActivity.class);
         startActivityForResult(intent, ACTIVITY_LOSTLIST);
     }
 
