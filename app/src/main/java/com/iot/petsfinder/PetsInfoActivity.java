@@ -1,6 +1,5 @@
 package com.iot.petsfinder;
 
-import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,18 +8,14 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 //
 //<<<<<<<HEAD
@@ -29,7 +24,7 @@ import java.util.ArrayList;
 
 public class PetsInfoActivity extends AppCompatActivity
 {
-    private static final String TAG_DOG_VAR = "type";
+    private static final String TAG_DOG_TYPE = "type";
     private static final String TAG_DOG_GENDER = "gender";
     private static final String TAG_DOG_AGE = "age";
     private static final String TAG_DOG_ISLOST = "islost";
@@ -81,16 +76,17 @@ public class PetsInfoActivity extends AppCompatActivity
 
             for (int i = 0; i < doggyList.length(); i++) {
                 JSONObject _tmpJson = doggyList.getJSONObject(i);
-                Doggy doggy = new Doggy();
 
-                //TODO :::image inflat
-                doggy.setImageId(R.drawable.dogsub2);
-                doggy.setType("종류" + _tmpJson.getString(TAG_DOG_VAR));
-                doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
-                doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
+                if (_tmpJson.getString(TAG_DOG_ISLOST).equals("1")) {
+                    Doggy doggy = new Doggy();
 
-                doggies.add(doggy);
+//                doggy.setImageId(R.drawable.dogsub2);
+                    doggy.setType("종류" + _tmpJson.getString(TAG_DOG_TYPE));
+                    doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
+                    doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
 
+                    doggies.add(doggy);
+                }
                 //when the doggy is lost attach to lost doggy list
 //                if (_tmpJson.getString(TAG_DOG_ISLOST).equals("1"))
 //                    lostDoggyList.add(doggy);
@@ -172,68 +168,68 @@ public class PetsInfoActivity extends AppCompatActivity
     }
 
 
-    private void insertToDatabase(String _mail, String _pw) {
-
-        class InsertData extends AsyncTask<String, Void, String> {
-            private ProgressDialog loading;
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-                loading = ProgressDialog.show(PetsInfoActivity.this,
-                        "Please Wait", null, true, true);
-            }
-
-            @Override
-            protected void onPostExecute(String s) {
-                super.onPostExecute(s);
-
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(String... params) {
-
-                try {
-                    String mail = params[0];
-                    String pw = params[1];
-
-                    String data = URLEncoder.encode("mail", "UTF-8") + "="
-                            + URLEncoder.encode(mail, "UTF-8");
-                    data += "&" + URLEncoder.encode("pw", "UTF-8") + "="
-                            + URLEncoder.encode(pw, "UTF-8");
-
-                    URL url = new URL(DB_URL_LOGIN);
-                    URLConnection conn = url.openConnection();
-
-                    conn.setDoOutput(true);
-                    OutputStreamWriter wr =
-                            new OutputStreamWriter(conn.getOutputStream());
-
-                    wr.write(data);
-                    wr.flush();
-
-                    BufferedReader reader = new BufferedReader(
-                            new InputStreamReader(conn.getInputStream()));
-
-                    StringBuilder sb = new StringBuilder();
-                    String line;
-
-                    // Read Server Response
-                    while ((line = reader.readLine()) != null) {
-                        sb.append(line);
-                        break;
-                    }
-                    return sb.toString();
-                } catch (Exception e) {
-                    return "Exception: " + e.getMessage();
-                }
-            }
-        }
-        InsertData task = new InsertData();
-        task.execute(_mail, _pw);
-    }
+//    private void insertToDatabase(String _mail, String _pw) {
+//
+//        class InsertData extends AsyncTask<String, Void, String> {
+//            private ProgressDialog loading;
+//
+//            @Override
+//            protected void onPreExecute() {
+//                super.onPreExecute();
+//
+//                loading = ProgressDialog.show(PetsInfoActivity.this,
+//                        "Please Wait", null, true, true);
+//            }
+//
+//            @Override
+//            protected void onPostExecute(String s) {
+//                super.onPostExecute(s);
+//
+//                loading.dismiss();
+//                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+//            }
+//
+//            @Override
+//            protected String doInBackground(String... params) {
+//
+//                try {
+//                    String mail = params[0];
+//                    String pw = params[1];
+//
+//                    String data = URLEncoder.encode("mail", "UTF-8") + "="
+//                            + URLEncoder.encode(mail, "UTF-8");
+//                    data += "&" + URLEncoder.encode("pw", "UTF-8") + "="
+//                            + URLEncoder.encode(pw, "UTF-8");
+//
+//                    URL url = new URL(DB_URL_LOGIN);
+//                    URLConnection conn = url.openConnection();
+//
+//                    conn.setDoOutput(true);
+//                    OutputStreamWriter wr =
+//                            new OutputStreamWriter(conn.getOutputStream());
+//
+//                    wr.write(data);
+//                    wr.flush();
+//
+//                    BufferedReader reader = new BufferedReader(
+//                            new InputStreamReader(conn.getInputStream()));
+//
+//                    StringBuilder sb = new StringBuilder();
+//                    String line;
+//
+//                    // Read Server Response
+//                    while ((line = reader.readLine()) != null) {
+//                        sb.append(line);
+//                        break;
+//                    }
+//                    return sb.toString();
+//                } catch (Exception e) {
+//                    return "Exception: " + e.getMessage();
+//                }
+//            }
+//        }
+//        InsertData task = new InsertData();
+//        task.execute(_mail, _pw);
+//    }
 
 }

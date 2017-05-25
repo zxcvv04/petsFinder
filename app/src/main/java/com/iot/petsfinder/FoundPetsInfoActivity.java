@@ -29,7 +29,7 @@ import java.net.URLEncoder;
 
 public class FoundPetsInfoActivity extends AppCompatActivity
 {
-    private static final String TAG_DOG_VAR = "type";
+    private static final String TAG_DOG_TYPE = "type";
     private static final String TAG_DOG_GENDER = "gender";
     private static final String TAG_DOG_AGE = "age";
     private static final String TAG_DOG_ISLOST = "islost";
@@ -83,7 +83,7 @@ public class FoundPetsInfoActivity extends AppCompatActivity
 
                 //TODO :::image inflat
                 doggy.setImageId(R.drawable.dogsub2);
-                doggy.setType("종류" + _tmpJson.getString(TAG_DOG_VAR));
+                doggy.setType("종류" + _tmpJson.getString(TAG_DOG_TYPE));
                 doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
                 doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
 

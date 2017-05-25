@@ -21,7 +21,7 @@ public class DBDoggy {
 
     private final static int ACTIVITY_ADDITEM = 1006;
     private final static String DB_URL_LOGIN = "http://122.44.13.91:11057/ddddddddd";
-    private static final String TAG_DOG_VAR = "type";
+    private static final String TAG_DOG_TYPE = "type";
     private static final String TAG_DOG_GENDER = "gender";
     private static final String TAG_DOG_AGE = "age";
     private static final String TAG_DOG_ISLOST = "islost";
@@ -48,7 +48,7 @@ public class DBDoggy {
 
                 //TODO :::image inflat
                 doggy.setImageId(R.drawable.dogsub2);
-                doggy.setType("종류" + _tmpJson.getString(TAG_DOG_VAR));
+                doggy.setType("종류" + _tmpJson.getString(TAG_DOG_TYPE));
                 doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
                 doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
 
