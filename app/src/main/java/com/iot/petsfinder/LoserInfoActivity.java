@@ -2,8 +2,8 @@ package com.iot.petsfinder;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class LoserInfoActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loser_info);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        /*mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
         ArrayList<Album> albums = loadData();
 
@@ -32,7 +32,13 @@ public class LoserInfoActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new AlbumAdapter(albums);
-       mRecyclerView.setAdapter(mAdapter);
+       mRecyclerView.setAdapter(mAdapter);*/
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL));
+        ArrayList<Album> albums = loadData();
+        AlbumAdapter adapter = new AlbumAdapter(albums);
+        recyclerView.setAdapter(adapter);
 
     }
 
