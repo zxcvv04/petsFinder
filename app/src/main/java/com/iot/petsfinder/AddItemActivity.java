@@ -20,6 +20,7 @@ public class AddItemActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_item);
 
         edtxtDogAge = (EditText) findViewById(R.id.edtxtDogAge);
         edtxtDogSex = (EditText) findViewById(R.id.edtxtDogSex);
