@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.support.v4.app.Fragment;
@@ -26,6 +25,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.iot.petsfinder.Detail.ACTIVITY_ADDITEM;
+
 
 public class MainActivity extends AppCompatActivity
 {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_float);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -89,15 +90,6 @@ public class MainActivity extends AppCompatActivity
                         return true;
                     }
                 });
-        // Adding Floating Action Button to bottom right of main view
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "Hello Snackbar!",
-                        Snackbar.LENGTH_LONG).show();
-            }
-        });
 
         Intent intent = getIntent();
         if (intent != null)
@@ -113,6 +105,20 @@ public class MainActivity extends AppCompatActivity
                 textView02.setText(parcel.getLoginId() + "님 반갑습니다.");
             }
         }
+
+        // floating button
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabInMain);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        AddItemActivity.class
+                );
+                startActivityForResult(intent, ACTIVITY_ADDITEM);
+            }
+        });
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

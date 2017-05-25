@@ -20,7 +20,7 @@ public class PetsInfoActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pets_info);
+        setContentView(R.layout.activity_pets_info_floatbtn);
 
         _recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 

@@ -13,9 +13,9 @@ import java.util.List;
 public class AddItemActivity extends AppCompatActivity {
 
 
+    TextView txtVSelectedDoggyFamily;
     EditText edtxtDogAge, edtxtDogSex, edtxtContactInfo, edtxtDetails;
     Button btnAttachLostList, btnAttachFoundList;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,15 +29,12 @@ public class AddItemActivity extends AppCompatActivity {
         /////////TODO : trig from this buttons     to send data to db
         btnAttachFoundList = (Button) findViewById(R.id.btnAttachFoundList);
         btnAttachLostList = (Button) findViewById(R.id.btnAttachLostList);
-
+        txtVSelectedDoggyFamily =
+                (TextView) findViewById(R.id.txtVChosedDoggyFamily);
 
     }
 
-
-
     //region doggie spinner lol
-    private TextView txtVSelectedDoggyFamily =
-            (TextView) findViewById(R.id.txtVChosedDoggyFamily);
 
     protected void btnDoggyJindoClicked (View v) {
         txtVSelectedDoggyFamily.setText("진돗개");
