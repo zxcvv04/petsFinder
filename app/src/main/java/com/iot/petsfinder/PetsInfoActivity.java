@@ -66,19 +66,22 @@ public class PetsInfoActivity extends AppCompatActivity
 
 
     //// list binding
-    private ArrayList<Doggy> loadData() {
+    private ArrayList<Doggy> loadData()
+    {
 
         getData(DB_URL_LOGIN);
 
         ArrayList<Doggy> lostDoggyList = new ArrayList<>();
         ArrayList<Doggy> foundDoggyList = new ArrayList<>();
 
-        try {
+        try
+        {
 
             JSONObject jsonObj = new JSONObject(myJSON);
             JSONArray doggyList = jsonObj.getJSONArray(TAG_RESULTS);
 
-            for (int i = 0; i < doggyList.length(); i++) {
+            for (int i = 0; i < doggyList.length(); i++)
+            {
                 JSONObject _tmpJson = doggyList.getJSONObject(i);
                 Doggy doggy = new Doggy();
                 doggy.setImageId(R.drawable.dogsub2);
@@ -86,21 +89,22 @@ public class PetsInfoActivity extends AppCompatActivity
                 doggy.setAge("나이" + _tmpJson.getString(TAG_DOG_AGE));
                 doggy.setGender("성별" + _tmpJson.getString(TAG_DOG_GENDER));
 
-                albums.add(doggy);
+                //albums.add(doggy);
             }
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
             Log.e("ee", e.getMessage());
         }
 
-        return albums;
+        //return albums;
 //=======
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         _recyclerView.setLayoutManager(layoutManager);
         _recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        _cardView=(CardView) findViewById(R.id.card_view);
+        _cardView = (CardView) findViewById(R.id.card_view);
 
         _recyclerView.setOnClickListener(
                 new View.OnClickListener()
@@ -117,8 +121,10 @@ public class PetsInfoActivity extends AppCompatActivity
                     }
                 }
         );
-//>>>>>>> origin/master
+        return lostDoggyList;
     }
+//>>>>>>> origin/master
+
 
     //// get json from db
     public void getData(String url) {

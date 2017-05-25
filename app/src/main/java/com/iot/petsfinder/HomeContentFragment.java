@@ -25,6 +25,7 @@ public class HomeContentFragment extends Fragment
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
         return recyclerView;
     }
 
