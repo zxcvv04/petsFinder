@@ -22,17 +22,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
-import java.util.Objects;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity
+{
 
     String myJSON;
 
     private static final String TAG_RESULTS = "result";
     private static final String TAG_MAIL = "mail";
     private static final String TAG_PW = "pw";
-    private static final String DB_URL_LOGIN = "http://122.44.13.91:11057/getdata.php";
-    private static final String DB_URL_SIGNUP = "http://122.44.13.91:11057/signup.php";
 
     JSONArray peoples = null;
 
@@ -40,10 +38,13 @@ public class SignUpActivity extends AppCompatActivity {
     Button btnCreateAccount;
 
     String userName, password, confirmPassword;
+
     String dbaccountMail, dbacccountPw;
 
+    /*LoginDataBaseAdapter loginDataBaseAdapter;*/
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join);
 
@@ -52,111 +53,177 @@ public class SignUpActivity extends AppCompatActivity {
         editTextPassword = (EditText) findViewById(R.id.loginPasswordInput);
         editTextConfirmPassword = (EditText) findViewById(R.id.loginConfirmPasswordInput);
 
-        getData(DB_URL_LOGIN);
+        getData("http://122.44.13.91:11057/getdata.php");
+
+        /*// get Instance  of Database Adapter
+        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
+        loginDataBaseAdapter=loginDataBaseAdapter.open();
+
+        // Get Refferences of Views
+        editTextUserName=(EditText)findViewById(R.id.loginIdInput);
+        editTextPassword=(EditText)findViewById(R.id.loginPasswordInput);
+        editTextConfirmPassword=(EditText)findViewById(R.id.loginConfirmPasswordInput);*/
 
         btnCreateAccount = (Button) findViewById(R.id.button);
-        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+        btnCreateAccount.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                // TODO Auto-generated method stub
 
                 userName = editTextUserName.getText().toString();
                 password = editTextPassword.getText().toString();
                 confirmPassword = editTextConfirmPassword.getText().toString();
 
-                try {
+
+                try
+                {
                     JSONObject jsonObj = new JSONObject(myJSON);
                     peoples = jsonObj.getJSONArray(TAG_RESULTS);
 
                     boolean isAuth = false;
 
-                    for (int i = 0; i < peoples.length(); i++) {
+                    for (int i = 0; i < peoples.length(); i++)
+                    {
                         JSONObject c = peoples.getJSONObject(i);
                         dbaccountMail = c.getString(TAG_MAIL);
                         dbacccountPw = c.getString(TAG_PW);
 
-                        if (userName.equals(dbaccountMail)
-                                && password.equals(dbacccountPw)
-                                && confirmPassword.equals(password))
+
+                        if (userName.equals(dbaccountMail) && password.equals(dbacccountPw) && confirmPassword.equals(password))
                             isAuth = true;
                     }
 
-                    if (isAuth) {
-                        Toast.makeText(getApplicationContext(),
-                                "동일한 계정이 있습니다.",
-                                Toast.LENGTH_LONG).show();
 
-                    } else if (userName.equals("")
-                            || password.equals("")
-                            || confirmPassword.equals(""))
-                        Toast.makeText(getApplicationContext(),
-                                "값을 입력해 주세요..",
-                                Toast.LENGTH_LONG).show();
-
-                    else if ((!Objects.equals(userName, ""))
-                            && (!Objects.equals(password, ""))
-                            && confirmPassword.equals(password)) {
-                        insertToDatabase(userName, password);
-                        Toast.makeText(getApplicationContext(),
-                                "계정이 만들어졌습니다.",
-                                Toast.LENGTH_LONG).show();
-
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(intent);
+                    if ( isAuth )
+                    {
+                        Toast.makeText(getApplicationContext(), "동일한 계정이 있습니다.", Toast.LENGTH_LONG).show();
                     }
-                } catch (JSONException e) {
+                    else if (userName.equals("") || password.equals ("") || confirmPassword.equals(""))
+                            Toast.makeText(getApplicationContext(), "값을 입력해 주세요..", Toast.LENGTH_LONG).show();
+                    else if ((userName!="") && (password!="") && confirmPassword.equals(password))
+                        {
+                            insertToDatabase(userName, password);
+                            Toast.makeText(getApplicationContext(), "계정이 만들어졌습니다.",Toast.LENGTH_LONG).show();
+
+
+
+                            Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                            startActivity(intent);
+                        }
+
+
+
+                        /*persons.put(TAG_MAIL,dbaccountMail);
+                        persons.put(TAG_PW,dbacccountPw);
+
+                        personList.add(persons);*/
+
+                } catch (JSONException e)
+                {
                     e.printStackTrace();
                 }
+
+
+                // check if any of the fields are vaccant
+                /*if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "Field Vaccant",
+Toast.LENGTH_LONG).show();
+                    return;
+                }
+                // check if both password matches
+                if(!password.equals(confirmPassword))
+                {
+                    Toast.makeText(getApplicationContext(), "Password does not match",
+Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    // Save the Data in Database
+                    loginDataBaseAdapter.insertEntry(userName, password);
+                    Toast.makeText(getApplicationContext(), "Account Successfully Created ",
+Toast.LENGTH_LONG).show();
+                }*/
             }
         });
     }
 
-
-    public void getData(String url) {
-        class GetDataJSON extends AsyncTask<String, Void, String> {
+    public void getData(String url)
+    {
+        class GetDataJSON extends AsyncTask<String, Void, String>
+        {
 
             @Override
-            protected String doInBackground(String... params) {
+            protected String doInBackground(String... params)
+            {
 
                 String uri = params[0];
 
-                BufferedReader bufferedReader;
-                try {
+                BufferedReader bufferedReader = null;
+                try
+                {
                     URL url = new URL(uri);
                     HttpURLConnection con = (HttpURLConnection) url.openConnection();
-                    StringBuilder stringBuilder = new StringBuilder();
+                    StringBuilder sb = new StringBuilder();
 
-                    bufferedReader = new BufferedReader(
-                            new InputStreamReader(con.getInputStream()));
+                    bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
 
                     String json;
-                    while ((json = bufferedReader.readLine()) != null) {
-                        stringBuilder.append(json + "\n");
+                    while ((json = bufferedReader.readLine()) != null)
+                    {
+                        sb.append(json + "\n");
                     }
 
-                    return stringBuilder.toString().trim();
+                    return sb.toString().trim();
 
-                } catch (Exception e) {
+                } catch (Exception e)
+                {
                     return null;
                 }
+
 
             }
 
             @Override
-            protected void onPostExecute(String result) {
+            protected void onPostExecute(String result)
+            {
                 myJSON = result;
             }
         }
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
     }
+    /*@Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+
+        loginDataBaseAdapter.close();
+    }*/
 
 
-    private void insertToDatabase(String _mail, String _pw) {
+    //    private SQLiteDatabase db;
+//
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState)
+//    {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_join);
+//
+//
+//    }
+    private void insertToDatabase(String _mail, String _pw)
+    {
 
-        class InsertData extends AsyncTask<String, Void, String> {
-            private ProgressDialog loading;
+        class InsertData extends AsyncTask<String, Void, String>
+        {
+            ProgressDialog loading;
+
 
             @Override
-            protected void onPreExecute() {
+            protected void onPreExecute()
+            {
                 super.onPreExecute();
 
                 loading = ProgressDialog.show(SignUpActivity.this,
@@ -164,7 +231,8 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             @Override
-            protected void onPostExecute(String s) {
+            protected void onPostExecute(String s)
+            {
                 super.onPostExecute(s);
 
                 loading.dismiss();
@@ -172,18 +240,21 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
             @Override
-            protected String doInBackground(String... params) {
+            protected String doInBackground(String... params)
+            {
 
-                try {
-                    String mail = params[0];
-                    String pw = params[1];
+                try
+                {
+                    String mail = (String) params[0];
+                    String pw = (String) params[1];
 
+                    String link = "http://122.44.13.91:11057/signup.php";
                     String data = URLEncoder.encode("mail", "UTF-8") + "="
                             + URLEncoder.encode(mail, "UTF-8");
                     data += "&" + URLEncoder.encode("pw", "UTF-8") + "="
                             + URLEncoder.encode(pw, "UTF-8");
 
-                    URL url = new URL(DB_URL_SIGNUP);
+                    URL url = new URL(link);
                     URLConnection conn = url.openConnection();
 
                     conn.setDoOutput(true);
@@ -197,26 +268,34 @@ public class SignUpActivity extends AppCompatActivity {
                             new InputStreamReader(conn.getInputStream()));
 
                     StringBuilder sb = new StringBuilder();
-                    String line;
+                    String line = null;
 
                     // Read Server Response
-                    while ((line = reader.readLine()) != null) {
+                    while ((line = reader.readLine()) != null)
+                    {
                         sb.append(line);
                         break;
                     }
                     return sb.toString();
-                } catch (Exception e) {
-                    return "Exception: " + e.getMessage();
+                } catch (Exception e)
+                {
+
+                    return new String("Exception: " + e.getMessage());
                 }
+
             }
         }
+
         InsertData task = new InsertData();
         task.execute(_mail, _pw);
     }
-
     @Override
     protected void onRestart() {
         super.onRestart();
         Log.d("TestAppActivity", "onRestart");
     }
+
+
+
+
 }
