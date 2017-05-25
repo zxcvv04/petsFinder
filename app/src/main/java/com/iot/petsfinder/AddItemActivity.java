@@ -3,26 +3,37 @@ package com.iot.petsfinder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class AddItemActivity extends AppCompatActivity {
+
+
+    EditText edtxtDogAge, edtxtDogSex, edtxtContactInfo, edtxtDetails;
+    Button btnAttachLostList, btnAttachFoundList;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        LinearLayout layoutDoggyIcons = (LinearLayout) findViewById(R.id.layoutdoggieIconList);
-//
-//        Drawable.class.
-//        String getIconNames (LinearLayout layout) {
-//            for (int i = 0; i < layoutDoggyIcons.getChildCount(); i++) {
-//                {
-//                    return layoutDoggyIcons.getChildAt(i).get.getTag();
-//                }
-//            }
-//        }
+        edtxtDogAge = (EditText) findViewById(R.id.edtxtDogAge);
+        edtxtDogSex = (EditText) findViewById(R.id.edtxtDogSex);
+        edtxtContactInfo = (EditText) findViewById(R.id.edtxtContactInfo);
+        edtxtDetails = (EditText) findViewById(R.id.edtxtDetails);
+
+        /////////TODO : trig from this buttons     to send data to db
+        btnAttachFoundList = (Button) findViewById(R.id.btnAttachFoundList);
+        btnAttachLostList = (Button) findViewById(R.id.btnAttachLostList);
+
 
     }
+
+
 
     //region doggie spinner lol
     private TextView txtVSelectedDoggyFamily =
@@ -56,5 +67,20 @@ public class AddItemActivity extends AppCompatActivity {
         txtVSelectedDoggyFamily.setText("도베르만");
     }
     //region
+
+
+    ////입력된 값 String으로 받음 ( 사진제외 )
+    public List<String> getInputedStrings () {
+
+        List<String> _tmp = Arrays.asList(
+                ////품종, 나이, 성별, 연락처, 상세정보
+                txtVSelectedDoggyFamily.getText().toString(),
+                edtxtDogAge.getText().toString(),
+                edtxtDogSex.getText().toString(),
+                edtxtContactInfo.getText().toString(),
+                edtxtDetails.getText().toString()
+        );
+        return _tmp.isEmpty() ? _tmp : null;
+    }
 
 }
