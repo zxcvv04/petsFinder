@@ -7,7 +7,7 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import java.util.ArrayList;
 
-public class LoserInfoActivity extends AppCompatActivity
+public class LostListActivity extends AppCompatActivity
 {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;

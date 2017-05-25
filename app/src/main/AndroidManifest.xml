@@ -36,7 +36,7 @@
         <activity android:name=".AddItemActivity"
             android:windowSoftInputMode="stateHidden"
             />
-        <activity android:name=".LoserInfoActivity">
+        <activity android:name=".LostListActivity">
         </activity>
     </application>
 
