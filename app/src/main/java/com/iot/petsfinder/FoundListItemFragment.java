@@ -1,23 +1,19 @@
 package com.iot.petsfinder;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,10 +26,18 @@ import java.net.URL;
 
 public class FoundListItemFragment extends Fragment
 {
+    private static String myJSON;
+    private static JSONArray getJsonfoundinfodataArry = null;
 
-    String myJSON;
-    JSONArray getJsonfoundinfodataArry = null;
+    private static final String TAG_RESULTS = "result";
 
+    private static final String TAG_date = "date";
+    private static final String TAG_type = "type";
+    private static final String TAG_age = "age";
+    private static final String TAG_gender = "gender";
+    private static final String TAG_phonenum = "phonenum";
+    private static final String TAG_detailinfo = "detailinfo";
+    private static final String TAG_islost = "islost";
 
 
     @Override
@@ -83,22 +87,49 @@ public class FoundListItemFragment extends Fragment
     private static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 18;
-        private final Drawable[] image;
-        private final String[] type;
-        private final String[] age;
-        private final String[] gender;
+        private Drawable[] image;
+        private String[] date;
+        private String[] type;
+        private String[] age;
+        private String[] gender;
+        private String[] phonenum;
+        private String[] detailinfo;
+        private String[] islost;
+
 
         ContentAdapter(Context context) {
             Resources resources = context.getResources();
-            type = resources.getStringArray(R.array.places);
-            age = resources.getStringArray(R.array.place_details);
-            gender = resources.getStringArray(R.array.place_desc);
-            TypedArray a = resources.obtainTypedArray(R.array.place_avator);
-            image = new Drawable[a.length()];
-            for (int i = 0; i < image.length; i++) {
-                image[i] = a.getDrawable(i);
+            try
+            {
+                JSONObject jsonObj = new JSONObject(myJSON);
+                getJsonfoundinfodataArry = jsonObj.getJSONArray(TAG_RESULTS);
+
+                for (int i = 0; i < getJsonfoundinfodataArry.length(); i++)
+                {
+                    JSONObject c = getJsonfoundinfodataArry.getJSONObject(i);
+
+                    type = resources.getStringArray(Integer.parseInt(c.getString(TAG_type)));
+                    age = resources.getStringArray(Integer.parseInt(c.getString(TAG_age)));
+                    gender = resources.getStringArray(Integer.parseInt(c.getString(TAG_gender)));
+
+                    /*TypedArray a = resources.obtainTypedArray(R.array.place_avator);
+                    image = new Drawable[a.length()];
+                    for (int i = 0; i < image.length; i++) {
+                        image[i] = a.getDrawable(i);
+                    }
+                    a.recycle();*/
+                }
+                
+
+            } catch (JSONException e)
+            {
+                e.printStackTrace();
             }
-            a.recycle();
+
+
+
+
+
         }
 
         @Override
@@ -170,10 +201,6 @@ public class FoundListItemFragment extends Fragment
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
     }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("TestAppActivity", "onRestart");
-    }
+
 
 }
