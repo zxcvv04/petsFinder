@@ -50,13 +50,11 @@ public class AddItemActivity extends AppCompatActivity {
 
     JSONArray getJsondataArry = null;
 
-    private static final int ACTIVITY_FOUNDLIST = 1007;
-    private static final int ACTIVITY_LOSTLIST = 1008;
     TextView txtVSelectedDoggyFamily;
     EditText edtxtDogAge, edtxtDogSex, edtxtContactInfo, edtxtDetails;
     Button btnAttachLostList, btnAttachFoundList;
 
-    private String inputType, inputAge, inputGender, inputPhonenum, inputDetailinfo, inputIslost, inputage;
+    private String inputType, inputAge, inputGender, inputPhonenum, inputDetailinfo, inputIslost;
     private ImageView imageView;
 
 
@@ -68,20 +66,19 @@ public class AddItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
 
         buttonChoose = (Button) findViewById(R.id.btnTakeSnap);
+        btnAttachFoundList = (Button) findViewById(R.id.btnAttachFoundList);
+        btnAttachLostList = (Button) findViewById(R.id.btnAttachLostList);
+
         imageView = (ImageView) findViewById(R.id.imageView);
 
         edtxtDogAge = (EditText) findViewById(R.id.edtxtDogAge);
         edtxtDogSex = (EditText) findViewById(R.id.edtxtDogSex);
         edtxtContactInfo = (EditText) findViewById(R.id.edtxtContactInfo);
         edtxtDetails = (EditText) findViewById(R.id.edtxtDetails);
-
-        /////////TODO : trig from this buttons to send data to db
-        btnAttachFoundList = (Button) findViewById(R.id.btnAttachFoundList);
-        btnAttachLostList = (Button) findViewById(R.id.btnAttachLostList);
         txtVSelectedDoggyFamily =
                 (TextView) findViewById(R.id.txtVChosedDoggyFamily);
 
-
+        /////////TODO : trig from this buttons to send data to db
 
 
     }
@@ -123,9 +120,7 @@ public class AddItemActivity extends AppCompatActivity {
 
         //////TODO insert db data
 
-        Intent intent = new Intent(getApplicationContext(),
-                PetsInfoActivity.class);
-        startActivityForResult(intent, ACTIVITY_FOUNDLIST);
+
 
         inputInserValues();
         inputIslost = "0";
@@ -134,18 +129,25 @@ public class AddItemActivity extends AppCompatActivity {
 
         uploadImage();
 
+        Toast.makeText(getApplicationContext(), "정보가 등록되었습니다.",Toast.LENGTH_LONG).show();
+
+        finish();
     }
 
     protected void btnAttachLostListClicked (View v) {
 
         //////TODO insert db data
 
-        Intent intent = new Intent(getApplicationContext(),
-                PetsInfoActivity.class);
-        startActivityForResult(intent, ACTIVITY_LOSTLIST);
-
         inputInserValues();
         inputIslost = "1";
+
+        insertToDatabase(inputType, inputAge, inputGender, inputPhonenum, inputDetailinfo, inputIslost);
+
+        uploadImage();
+
+        Toast.makeText(getApplicationContext(), "정보가 등록되었습니다.",Toast.LENGTH_LONG).show();
+
+        finish();
     }
 
 
@@ -356,10 +358,6 @@ public class AddItemActivity extends AppCompatActivity {
 
         UploadImage ui = new UploadImage();
         ui.execute(bitmap);
-    }
-
-    private void viewImage() {
-        startActivity(new Intent(this, ViewImage.class));
     }
 
     private void inputInserValues(){

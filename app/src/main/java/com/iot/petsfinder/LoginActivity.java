@@ -33,17 +33,8 @@ public class LoginActivity extends AppCompatActivity
     private static final String TAG_MAIL = "mail";
     private static final String TAG_PW = "pw";
 
-    JSONArray peoples = null;
-
-    /*LoginDataBaseAdapter loginDataBaseAdapter;*/
-
-    //    public static final String LoginId = "admin";
-//    public static final String LoginPw = "admin";
-    private static final String TAG = "===";
-
-//    private DatabaseHelper dbHelper;
-//    private SQLiteDatabase db;
-
+    JSONArray getJsonJoindataArry = null;
+    
     ImageView imageView01;
     ImageView imageView02;
     ImageView imageView03;
@@ -53,7 +44,6 @@ public class LoginActivity extends AppCompatActivity
 
     String SelectId = "";
     int count = 0;
-    int join_counter = 0;
 
     String dbaccountMail, dbacccountPw;
 
@@ -131,14 +121,14 @@ public class LoginActivity extends AppCompatActivity
         try
         {
             JSONObject jsonObj = new JSONObject(myJSON);
-            peoples = jsonObj.getJSONArray(TAG_RESULTS);
+            getJsonJoindataArry = jsonObj.getJSONArray(TAG_RESULTS);
 
             boolean isAuth = false;
 
 
-            for (int i = 0; i < peoples.length(); i++)
+            for (int i = 0; i < getJsonJoindataArry.length(); i++)
             {
-                JSONObject c = peoples.getJSONObject(i);
+                JSONObject c = getJsonJoindataArry.getJSONObject(i);
                 dbaccountMail = c.getString(TAG_MAIL);
                 dbacccountPw = c.getString(TAG_PW);
 
