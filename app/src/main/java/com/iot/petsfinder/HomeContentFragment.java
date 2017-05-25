@@ -11,18 +11,21 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class HomeContentFragment extends Fragment
 {
@@ -71,9 +74,12 @@ public class HomeContentFragment extends Fragment
     {
 
         private final Drawable[] image;
-        String[] type;
-        String[] age;
-        String[] gender;
+//        String[] type;
+//        String[] age;
+//        String[] gender;
+                ArrayList<String> type;
+        ArrayList<String> age;
+        ArrayList<String> gender;
         private static final int LENGTH = 2;
         private static final String TAG_DOG_TYPE = "type";
         private static final String TAG_DOG_GENDER = "gender";
@@ -85,15 +91,14 @@ public class HomeContentFragment extends Fragment
         //<<<<<<< HEAD
         private final static int ACTIVITY_ADDITEM = 1006;
         private static final String TAG_RESULTS = "result";
-        private final static String DB_URL_LOGIN = "http://122.44.13.91:11057/ddddddddd";
+        private final static String DB_URL_LOGIN =
+                "http://122.44.13.91:11057/getdata_petsinfo.php";
 
 //        private final String[] gender;
 
         //// get json from db
         void getData(String url) {
             class GetDataJSON extends AsyncTask<String, Void, String> {
-
-                private String myJSON;
 
                 @Override
                 protected String doInBackground(String... params) {
@@ -111,7 +116,7 @@ public class HomeContentFragment extends Fragment
 
                         String json;
                         while ((json = bufferedReader.readLine()) != null) {
-                            stringBuilder.append(json + "\n");
+                            stringBuilder.append(json).append("\n");
                         }
 
                         return stringBuilder.toString().trim();
@@ -131,15 +136,30 @@ public class HomeContentFragment extends Fragment
             g.execute(url);
         }
 
-        void getJson() {
+        void getJson() { /// unpack json
             getData(DB_URL_LOGIN);
-            try {
-                JSONObject jsonObj = new JSONObject(myJSON);
-//                JSONArray doggyList = jsonObj.getJSONArray(TAG_RESULTS);
 
-                type = jsonObj.get(TAG_DOG_TYPE).toString().split(",");
-                age = jsonObj.get(TAG_DOG_AGE).toString().split(",");
-                gender = jsonObj.get(TAG_DOG_GENDER).toString().split(",");
+            Log.e("ddddd", "got json ");
+            try {
+
+                JSONObject jsonObj = new JSONObject(myJSON);
+                JSONArray doggyList = jsonObj.getJSONArray(TAG_RESULTS);
+
+                Log.e("ddddd", String.valueOf(jsonObj.length()));
+
+                for (int i = 0; i < doggyList.length(); i++) {
+                    JSONObject _tmpJson = doggyList.getJSONObject(i);
+//                    type[i] = _tmpJson.getString(TAG_DOG_TYPE);
+//                    age[i] = _tmpJson.getString(TAG_DOG_AGE);
+//                    gender[i] =  _tmpJson.getString(TAG_DOG_GENDER);
+                        type.add(_tmpJson.getString(TAG_DOG_TYPE));
+                        age.add(_tmpJson.getString(TAG_DOG_AGE));
+                        gender.add(_tmpJson.getString(TAG_DOG_GENDER));
+
+                }
+//                type = doggyList.getJSONArray(TAG_DOG_TYPE).toString().split(",");
+//                age = doggyList.getJSONArray(TAG_DOG_AGE).toString().split(",");
+//                gender = doggyList.getJSONArray(TAG_DOG_GENDER).toString().split(",");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -149,11 +169,9 @@ public class HomeContentFragment extends Fragment
 
             getJson();
             Resources resources = context.getResources();
-
-//                TypedArray a = resources.obtainTypedArray(R.array.place_avator);
-//                type = resources.getStringArray(R.array.places);
-//                age = resources.getStringArray(R.array.place_details);
-//                gender = resources.getStringArray(R.array.place_desc);
+//            type = resources.getStringArray(R.array.places);
+//            age = resources.getStringArray(R.array.place_details);
+//            gender = resources.getStringArray(R.array.place_desc);
             TypedArray a = resources.obtainTypedArray(R.array.place_avator);
             image = new Drawable[a.length()];
             for (int i = 0; i < image.length; i++) {
@@ -173,9 +191,12 @@ public class HomeContentFragment extends Fragment
         public void onBindViewHolder(ViewHolder holder, int position)
         {
             holder.image.setImageDrawable(image[position % image.length]);
-            holder.type.setText(type[position % type.length]);
-            holder.age.setText(age[position % age.length]);
-            holder.gender.setText(gender[position % gender.length]);
+//            holder.type.setText(type[position % type.length]);
+//            holder.age.setText(age[position % age.length]);
+//            holder.gender.setText(gender[position % gender.length]);
+            holder.type.setText(type.get(position % type.size()));
+            holder.age.setText(age.get(position % age.size()));
+            holder.gender.setText(gender.get(position % gender.size()));
         }
 
         @Override

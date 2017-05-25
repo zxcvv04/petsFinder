@@ -17,10 +17,10 @@ import java.util.ArrayList;
  * Created by dd on 2017-05-25.
  */
 
-public class DBDoggy {
+public class DBDoggies {
 
     private final static int ACTIVITY_ADDITEM = 1006;
-    private final static String DB_URL_LOGIN = "http://122.44.13.91:11057/ddddddddd";
+    private final static String DB_URL_GETDATA = "http://122.44.13.91:11057/getdata_petsinfo.php";
     private static final String TAG_DOG_TYPE = "type";
     private static final String TAG_DOG_GENDER = "gender";
     private static final String TAG_DOG_AGE = "age";
@@ -33,10 +33,9 @@ public class DBDoggy {
 
     ArrayList<Doggy> DoggyList = new ArrayList<>();
 
-
     private void loadData() {
 
-        getData(DB_URL_LOGIN);
+        getData(DB_URL_GETDATA);
 
         try {
             JSONObject jsonObj = new JSONObject(myJSON);

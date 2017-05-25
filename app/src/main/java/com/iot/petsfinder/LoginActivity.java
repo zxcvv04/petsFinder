@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity
         String userName = userNameInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        // fetch the Password form database for respective user name
+        // fetch the Password form database for resp1ective user name
         /*String storedPassword = loginDataBaseAdapter.getSinlgeEntry(userName);*/
         try
         {
