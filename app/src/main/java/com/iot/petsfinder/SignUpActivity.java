@@ -90,7 +90,9 @@ public class SignUpActivity extends AppCompatActivity
                         dbacccountPw = c.getString(TAG_PW);
 
 
-                        if (userName.equals(dbaccountMail) && password.equals(dbacccountPw) && confirmPassword.equals(password))
+                        if (userName.equals(dbaccountMail)
+                                && password.equals(dbacccountPw)
+                                && confirmPassword.equals(password))
                             isAuth = true;
                     }
 
