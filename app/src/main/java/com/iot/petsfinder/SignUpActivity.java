@@ -112,8 +112,6 @@ public class SignUpActivity extends AppCompatActivity
                             startActivity(intent);
                         }
 
-
-
                         /*persons.put(TAG_MAIL,dbaccountMail);
                         persons.put(TAG_PW,dbacccountPw);
 
@@ -194,25 +192,7 @@ Toast.LENGTH_LONG).show();
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
     }
-    /*@Override
-    protected void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
 
-        loginDataBaseAdapter.close();
-    }*/
-
-
-    //    private SQLiteDatabase db;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState)
-//    {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_join);
-//
-//
-//    }
     private void insertToDatabase(String _mail, String _pw)
     {
 

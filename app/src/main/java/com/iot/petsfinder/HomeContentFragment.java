@@ -51,14 +51,13 @@ public class HomeContentFragment extends Fragment
                     context.startActivity(intent);
                 }
             });
-
         }
     }
 
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder>
     {
 
-        private static final int LENGTH = 1;
+        private static final int LENGTH = 3;
 
         private final String[] mPlaces;
         private final String[] mPlaceDesc;
@@ -77,7 +76,6 @@ public class HomeContentFragment extends Fragment
             }
             a.recycle();
         }
-
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
