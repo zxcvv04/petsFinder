@@ -27,7 +27,7 @@ public class AddItemActivity extends AppCompatActivity {
         edtxtContactInfo = (EditText) findViewById(R.id.edtxtContactInfo);
         edtxtDetails = (EditText) findViewById(R.id.edtxtDetails);
 
-        /////////TODO : trig from this buttons     to send data to db
+        /////////TODO : trig from this buttons to send data to db
         btnAttachFoundList = (Button) findViewById(R.id.btnAttachFoundList);
         btnAttachLostList = (Button) findViewById(R.id.btnAttachLostList);
         txtVSelectedDoggyFamily =

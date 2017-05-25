@@ -20,312 +20,333 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <FrameLayout
-                    android:id="@+id/layoutFrame"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <SurfaceView
-                        android:id="@+id/surfaceView"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/app_bar_height" />
-                </FrameLayout>
-            </LinearLayout>
-
-
-            <Button
-                android:id="@+id/btnTakeSnap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="사진찍기" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/layoutFrame"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <SurfaceView
+                            android:id="@+id/surfaceView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:minHeight="@dimen/card_image_height"
+                            android:minWidth="@dimen/card_image_height" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btnTakeSnap"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="품종을 선택해주세요"
-                    android:textSize="24sp" />
+                    android:text="사진찍기" />
 
-                <TextView
-                    android:id="@+id/txtVChosedDoggyFamily"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="2"
-                    android:gravity="center"
-                    android:hint="선택하신 품종은"
-                    android:textSize="24sp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <HorizontalScrollView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:id="@+id/layoutdoggieIconList"
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="품종을 선택해주세요"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/txtVChosedDoggyFamily"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:hint="선택하신 품종은"
+                        android:textSize="24sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/layoutdoggieIconList"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/imageButton"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggyJindoClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="진돗개"
+                                app:srcCompat="@drawable/jindo" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton21"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:layoutDirection="inherit"
+                                android:onClick="btnDoggyborder_collieClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="보더 콜리"
+                                app:srcCompat="@drawable/border_collie" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton22"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggyboxerClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="복서"
+                                app:srcCompat="@drawable/boxer" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton23"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggybull_terrierClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="불 테리어"
+                                app:srcCompat="@drawable/bull_terrier" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton24"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggybulldogClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="불독"
+                                app:srcCompat="@drawable/bulldog" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton25"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggychihuahuaClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="치와와"
+                                app:srcCompat="@drawable/chihuahua" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton26"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggychow_chowClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="차우차우"
+                                app:srcCompat="@drawable/chow_chow" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton16"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggydachshundClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="닥스훈트"
+                                app:srcCompat="@drawable/dachshund" />
+
+                            <ImageButton
+                                android:id="@+id/imageButton20"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_weight="1"
+                                android:background="#00ff0000"
+                                android:onClick="btnDoggydobermanClicked"
+                                android:scaleType="fitCenter"
+                                android:tag="도베르만"
+                                app:srcCompat="@drawable/doberman" />
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:gravity="center"
+                        android:text="나이"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtxtDogAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:ems="10"
+                        android:inputType="textPersonName" />
 
-                        <ImageButton
-                            android:id="@+id/imageButton"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggyJindoClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="진돗개"
-                            app:srcCompat="@drawable/jindo" />
+                </LinearLayout>
 
-                        <ImageButton
-                            android:id="@+id/imageButton21"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:layoutDirection="inherit"
-                            android:onClick="btnDoggyborder_collieClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="보더 콜리"
-                            app:srcCompat="@drawable/border_collie" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton22"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggyboxerClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="복서"
-                            app:srcCompat="@drawable/boxer" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton23"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggybull_terrierClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="불 테리어"
-                            app:srcCompat="@drawable/bull_terrier" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton24"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggybulldogClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="불독"
-                            app:srcCompat="@drawable/bulldog" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton25"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggychihuahuaClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="치와와"
-                            app:srcCompat="@drawable/chihuahua" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton26"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggychow_chowClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="차우차우"
-                            app:srcCompat="@drawable/chow_chow" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton16"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggydachshundClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="닥스훈트"
-                            app:srcCompat="@drawable/dachshund" />
-
-                        <ImageButton
-                            android:id="@+id/imageButton20"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_weight="1"
-                            android:background="#00ff0000"
-                            android:onClick="btnDoggydobermanClicked"
-                            android:scaleType="fitCenter"
-                            android:tag="도베르만"
-                            app:srcCompat="@drawable/doberman" />
-
-                    </LinearLayout>
-                </HorizontalScrollView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView18"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center"
-                    android:text="나이"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtxtDogAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/textView181"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="성별"
+                        android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/edtxtDogSex"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.5"
+                        android:ems="10"
+                        android:hint="암 / 수 / desex"
+                        android:inputType="textPersonName" />
 
-                <TextView
-                    android:id="@+id/textView181"
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:gravity="center"
-                    android:text="성별"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtxtDogSex"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.5"
-                    android:ems="10"
-                    android:hint="암 / 수 / desex"
-                    android:inputType="textPersonName" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:gravity="center"
-                    android:text="연락처"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtxtContactInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.5"
-                    android:ems="10"
-                    android:hint="010-1234-5678"
-                    android:inputType="textPersonName" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.5"
-                    android:gravity="center"
-                    android:text="상세정보"
-                    android:textSize="18sp" />
-
-                <EditText
-                    android:id="@+id/edtxtDetails"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="0.5"
-                    android:ems="10"
-                    android:hint="기타 정보를 남겨주세요"
-                    android:inputType="textMultiLine"
-                    android:singleLine="false" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btnAttachFoundList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:text="찾아가세요" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btnAttachLostList"
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="연락처"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtxtContactInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.5"
+                        android:ems="10"
+                        android:hint="010-1234-5678"
+                        android:inputType="textPersonName" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
                     android:layout_weight="1"
-                    android:text="찾습니다" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:text="상세정보"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/edtxtDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.5"
+                        android:ems="10"
+                        android:hint="기타 정보를 남겨주세요"
+                        android:inputType="textMultiLine"
+                        android:singleLine="false" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnAttachFoundList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="찾아가세요" />
+
+                    <Button
+                        android:id="@+id/btnAttachLostList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="찾습니다" />
+                </LinearLayout>
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>
