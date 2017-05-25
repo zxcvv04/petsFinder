@@ -57,7 +57,7 @@ public class FoundPetsInfoActivity extends AppCompatActivity
 //        ArrayList<Doggy> foundDoggyList = new ArrayList<>();
 
 
-//        AlbumAdapter adapter = new AlbumAdapter(doggies);
+//        CardAdapter adapter = new CardAdapter(doggies);
 //        _recyclerView.setAdapter(adapter);
 //
 //        RecyclerView.LayoutManager layoutManager =

@@ -30,6 +30,7 @@ import static com.iot.petsfinder.Detail.ACTIVITY_ADDITEM;
 
 public class MainActivity extends AppCompatActivity
 {
+
     TextView textView01;
     TextView textView02;
 

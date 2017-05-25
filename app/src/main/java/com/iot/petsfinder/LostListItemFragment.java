@@ -41,8 +41,8 @@ public class LostListItemFragment extends Fragment
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.item_view_array, parent, false));
             image = (ImageView) itemView.findViewById(R.id.img);
-            type = (TextView) itemView.findViewById(R.id.type);
-            age = (TextView) itemView.findViewById(R.id.age);
+            type = (TextView) itemView.findViewById(R.id.txtCardVDogType);
+            age = (TextView) itemView.findViewById(R.id.txtCardVDogAge);
             gender = (TextView) itemView.findViewById(R.id.gender);
             itemView.setOnClickListener(new View.OnClickListener()
             {

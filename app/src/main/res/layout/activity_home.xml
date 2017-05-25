@@ -18,7 +18,7 @@
             android:src="@drawable/dogsub2"/>
 
         <TextView
-            android:id="@+id/type"
+            android:id="@+id/txtCardVDogType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/img"
@@ -30,10 +30,10 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/age"
+            android:id="@+id/txtCardVDogAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/type"
+            android:layout_below="@+id/txtCardVDogType"
             android:maxLines="3"
             android:padding="8dp"
             android:layout_marginTop="10dp"
@@ -44,7 +44,7 @@
             android:id="@+id/gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/age"
+            android:layout_below="@+id/txtCardVDogAge"
             android:layout_marginTop="10dp"
             android:maxLines="3"
             android:padding="8dp"

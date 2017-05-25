@@ -53,8 +53,8 @@ public class HomeContentFragment extends Fragment
         {
             super(inflater.inflate(R.layout.activity_home, parent, false));
             image = (ImageView) itemView.findViewById(R.id.img);
-            type = (TextView) itemView.findViewById(R.id.type);
-            age = (TextView) itemView.findViewById(R.id.age);
+            type = (TextView) itemView.findViewById(R.id.txtCardVDogType);
+            age = (TextView) itemView.findViewById(R.id.txtCardVDogAge);
             gender = (TextView) itemView.findViewById(R.id.gender);
             itemView.setOnClickListener(new View.OnClickListener()
             {
