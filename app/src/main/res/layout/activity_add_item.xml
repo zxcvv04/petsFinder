@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,13 +33,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <SurfaceView
-                            android:id="@+id/surfaceView"
+                        <ImageView
+                            android:id="@+id/imageView"
                             android:layout_width="match_parent"
                             android:layout_height="@android:dimen/thumbnail_width"
                             android:layout_gravity="center"
                             android:minHeight="@dimen/card_image_height"
-                            android:minWidth="@dimen/card_image_height" />
+                            android:minWidth="@dimen/card_image_height"/>
                     </FrameLayout>
                 </LinearLayout>
 
@@ -49,7 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="사진찍기" />
+                    android:onClick="btnbuttonChoose"
+                    android:text="사진가져오기"/>
 
             </LinearLayout>
 
@@ -74,7 +75,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="품종을 선택해주세요"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"/>
 
                     <TextView
                         android:id="@+id/txtVChosedDoggyFamily"
@@ -84,7 +85,7 @@
                         android:layout_weight="2"
                         android:gravity="center"
                         android:hint="선택하신 품종은"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -115,7 +116,7 @@
                                 android:onClick="btnDoggyJindoClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="진돗개"
-                                app:srcCompat="@drawable/jindo" />
+                                app:srcCompat="@drawable/jindo"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton21"
@@ -127,7 +128,7 @@
                                 android:onClick="btnDoggyborder_collieClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="보더 콜리"
-                                app:srcCompat="@drawable/border_collie" />
+                                app:srcCompat="@drawable/border_collie"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton22"
@@ -138,7 +139,7 @@
                                 android:onClick="btnDoggyboxerClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="복서"
-                                app:srcCompat="@drawable/boxer" />
+                                app:srcCompat="@drawable/boxer"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton23"
@@ -149,7 +150,7 @@
                                 android:onClick="btnDoggybull_terrierClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="불 테리어"
-                                app:srcCompat="@drawable/bull_terrier" />
+                                app:srcCompat="@drawable/bull_terrier"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton24"
@@ -160,7 +161,7 @@
                                 android:onClick="btnDoggybulldogClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="불독"
-                                app:srcCompat="@drawable/bulldog" />
+                                app:srcCompat="@drawable/bulldog"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton25"
@@ -171,7 +172,7 @@
                                 android:onClick="btnDoggychihuahuaClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="치와와"
-                                app:srcCompat="@drawable/chihuahua" />
+                                app:srcCompat="@drawable/chihuahua"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton26"
@@ -182,7 +183,7 @@
                                 android:onClick="btnDoggychow_chowClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="차우차우"
-                                app:srcCompat="@drawable/chow_chow" />
+                                app:srcCompat="@drawable/chow_chow"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton16"
@@ -193,7 +194,7 @@
                                 android:onClick="btnDoggydachshundClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="닥스훈트"
-                                app:srcCompat="@drawable/dachshund" />
+                                app:srcCompat="@drawable/dachshund"/>
 
                             <ImageButton
                                 android:id="@+id/imageButton20"
@@ -204,7 +205,7 @@
                                 android:onClick="btnDoggydobermanClicked"
                                 android:scaleType="fitCenter"
                                 android:tag="도베르만"
-                                app:srcCompat="@drawable/doberman" />
+                                app:srcCompat="@drawable/doberman"/>
 
                         </LinearLayout>
                     </HorizontalScrollView>
@@ -224,7 +225,7 @@
                         android:layout_weight="3"
                         android:gravity="center"
                         android:text="나이"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"/>
 
                     <EditText
                         android:id="@+id/edtxtDogAge"
@@ -234,7 +235,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
                         android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"/>
 
                 </LinearLayout>
 
@@ -252,7 +253,7 @@
                         android:layout_weight="1.5"
                         android:gravity="center"
                         android:text="성별"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"/>
 
                     <EditText
                         android:id="@+id/edtxtDogSex"
@@ -263,7 +264,7 @@
                         android:layout_weight="0.5"
                         android:ems="10"
                         android:hint="암 / 수 / desex"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"/>
 
                 </LinearLayout>
 
@@ -281,7 +282,7 @@
                         android:layout_weight="1.5"
                         android:gravity="center"
                         android:text="연락처"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"/>
 
                     <EditText
                         android:id="@+id/edtxtContactInfo"
@@ -292,7 +293,7 @@
                         android:layout_weight="0.5"
                         android:ems="10"
                         android:hint="010-1234-5678"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"/>
 
                 </LinearLayout>
 
@@ -310,7 +311,7 @@
                         android:layout_weight="1.5"
                         android:gravity="center"
                         android:text="상세정보"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"/>
 
                     <EditText
                         android:id="@+id/edtxtDetails"
@@ -322,7 +323,7 @@
                         android:ems="10"
                         android:hint="기타 정보를 남겨주세요"
                         android:inputType="textMultiLine"
-                        android:singleLine="false" />
+                        android:singleLine="false"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -337,7 +338,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="btnAttachFoundListClicked"
-                        android:text="찾아가세요" />
+                        android:text="찾아가세요"/>
 
                     <Button
                         android:id="@+id/btnAttachLostList"
@@ -345,7 +346,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="btnAttachLostListClicked"
-                        android:text="찾습니다" />
+                        android:text="찾습니다"/>
                 </LinearLayout>
             </LinearLayout>
 

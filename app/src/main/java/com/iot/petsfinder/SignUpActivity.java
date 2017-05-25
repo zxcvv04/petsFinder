@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity
     private static final String TAG_MAIL = "mail";
     private static final String TAG_PW = "pw";
 
-    JSONArray peoples = null;
+    JSONArray getJsondataArry = null;
 
     EditText editTextUserName, editTextPassword, editTextConfirmPassword;
     Button btnCreateAccount;
@@ -41,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity
 
     String dbaccountMail, dbacccountPw;
 
-    /*LoginDataBaseAdapter loginDataBaseAdapter;*/
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,16 +53,7 @@ public class SignUpActivity extends AppCompatActivity
         editTextConfirmPassword = (EditText) findViewById(R.id.loginConfirmPasswordInput);
 
         getData("http://122.44.13.91:11057/getdata.php");
-
-        /*// get Instance  of Database Adapter
-        loginDataBaseAdapter=new LoginDataBaseAdapter(this);
-        loginDataBaseAdapter=loginDataBaseAdapter.open();
-
-        // Get Refferences of Views
-        editTextUserName=(EditText)findViewById(R.id.loginIdInput);
-        editTextPassword=(EditText)findViewById(R.id.loginPasswordInput);
-        editTextConfirmPassword=(EditText)findViewById(R.id.loginConfirmPasswordInput);*/
-
+        
         btnCreateAccount = (Button) findViewById(R.id.button);
         btnCreateAccount.setOnClickListener(new View.OnClickListener()
         {
@@ -79,13 +69,13 @@ public class SignUpActivity extends AppCompatActivity
                 try
                 {
                     JSONObject jsonObj = new JSONObject(myJSON);
-                    peoples = jsonObj.getJSONArray(TAG_RESULTS);
+                    getJsondataArry = jsonObj.getJSONArray(TAG_RESULTS);
 
                     boolean isAuth = false;
 
-                    for (int i = 0; i < peoples.length(); i++)
+                    for (int i = 0; i < getJsondataArry.length(); i++)
                     {
-                        JSONObject c = peoples.getJSONObject(i);
+                        JSONObject c = getJsondataArry.getJSONObject(i);
                         dbaccountMail = c.getString(TAG_MAIL);
                         dbacccountPw = c.getString(TAG_PW);
 
@@ -112,39 +102,10 @@ public class SignUpActivity extends AppCompatActivity
                             startActivity(intent);
                         }
 
-
-
-                        /*persons.put(TAG_MAIL,dbaccountMail);
-                        persons.put(TAG_PW,dbacccountPw);
-
-                        personList.add(persons);*/
-
                 } catch (JSONException e)
                 {
                     e.printStackTrace();
                 }
-
-
-                // check if any of the fields are vaccant
-                /*if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(), "Field Vaccant",
-Toast.LENGTH_LONG).show();
-                    return;
-                }
-                // check if both password matches
-                if(!password.equals(confirmPassword))
-                {
-                    Toast.makeText(getApplicationContext(), "Password does not match",
-Toast.LENGTH_LONG).show();
-                }
-                else
-                {
-                    // Save the Data in Database
-                    loginDataBaseAdapter.insertEntry(userName, password);
-                    Toast.makeText(getApplicationContext(), "Account Successfully Created ",
-Toast.LENGTH_LONG).show();
-                }*/
             }
         });
     }
@@ -194,25 +155,6 @@ Toast.LENGTH_LONG).show();
         GetDataJSON g = new GetDataJSON();
         g.execute(url);
     }
-    /*@Override
-    protected void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-
-        loginDataBaseAdapter.close();
-    }*/
-
-
-    //    private SQLiteDatabase db;
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState)
-//    {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_join);
-//
-//
-//    }
     private void insertToDatabase(String _mail, String _pw)
     {
 
@@ -289,12 +231,6 @@ Toast.LENGTH_LONG).show();
         InsertData task = new InsertData();
         task.execute(_mail, _pw);
     }
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.d("TestAppActivity", "onRestart");
-    }
-
 
 
 
