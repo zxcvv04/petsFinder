@@ -6,7 +6,6 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -77,11 +76,11 @@ public class PetsInfoActivity extends AppCompatActivity implements RecyclerView.
 
     private JsonArrayRequest getDataFromServer(int requestCount) {
         //Initializing ProgressBar
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
+//        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar1);
 
         //Displaying Progressbar
-        progressBar.setVisibility(View.VISIBLE);
-        setProgressBarIndeterminateVisibility(true);
+//        progressBar.setVisibility(View.VISIBLE);
+//        setProgressBarIndeterminateVisibility(true);
 
         //JsonArrayRequest of volley
 
@@ -93,13 +92,13 @@ public class PetsInfoActivity extends AppCompatActivity implements RecyclerView.
                         //Calling method parseData to parse the json response
                         parseData(response);
                         //Hiding the progressbar
-                        progressBar.setVisibility(View.GONE);
+//                        progressBar.setVisibility(View.GONE);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        progressBar.setVisibility(View.GONE);
+//                        progressBar.setVisibility(View.GONE);
                         //If an error occurs that means end of the list has reached
                         Toast.makeText(PetsInfoActivity.this, "No More Items Available", Toast.LENGTH_SHORT).show();
                     }
