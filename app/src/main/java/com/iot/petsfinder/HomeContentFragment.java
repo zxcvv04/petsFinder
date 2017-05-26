@@ -25,14 +25,14 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class HomeContentFragment extends Fragment
 {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.activity_pets_info, container, false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(
+                R.layout.activity_pets_info, container, false);
 //        ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(adapter);
@@ -74,12 +74,12 @@ public class HomeContentFragment extends Fragment
     {
 
         private final Drawable[] image;
-//        String[] type;
-//        String[] age;
-//        String[] gender;
-                ArrayList<String> type;
-        ArrayList<String> age;
-        ArrayList<String> gender;
+        String[] type;
+        String[] age;
+        String[] gender;
+//        ArrayList<String> type;
+//        ArrayList<String> age;
+//        ArrayList<String> gender;
         private static final int LENGTH = 2;
         private static final String TAG_DOG_TYPE = "type";
         private static final String TAG_DOG_GENDER = "gender";
@@ -87,7 +87,7 @@ public class HomeContentFragment extends Fragment
         private static final String TAG_DOG_ISLOST = "islost";
         private CardView _cardView;
         private RecyclerView _recyclerView;
-        private String myJSON;
+        private String mmyJSON;
         //<<<<<<< HEAD
         private final static int ACTIVITY_ADDITEM = 1006;
         private static final String TAG_RESULTS = "result";
@@ -129,7 +129,7 @@ public class HomeContentFragment extends Fragment
 
                 @Override
                 protected void onPostExecute(String result) {
-                    myJSON = result;
+                    mmyJSON = result;
                 }
             }
             GetDataJSON g = new GetDataJSON();
@@ -142,20 +142,24 @@ public class HomeContentFragment extends Fragment
             Log.e("ddddd", "got json ");
             try {
 
-                JSONObject jsonObj = new JSONObject(myJSON);
+                JSONObject jsonObj = new JSONObject(mmyJSON);
+                Log.e("ddddd", String.valueOf(jsonObj.length()));
                 JSONArray doggyList = jsonObj.getJSONArray(TAG_RESULTS);
 
                 Log.e("ddddd", String.valueOf(jsonObj.length()));
+                Log.e("!!!dd", String.valueOf(doggyList.getJSONObject(0).length()));
+                type = new String[doggyList.getJSONObject(0).length()];
+                age = new String[doggyList.getJSONObject(0).length()];
+                gender = new String[doggyList.getJSONObject(0).length()];
 
                 for (int i = 0; i < doggyList.length(); i++) {
                     JSONObject _tmpJson = doggyList.getJSONObject(i);
-//                    type[i] = _tmpJson.getString(TAG_DOG_TYPE);
-//                    age[i] = _tmpJson.getString(TAG_DOG_AGE);
-//                    gender[i] =  _tmpJson.getString(TAG_DOG_GENDER);
-                        type.add(_tmpJson.getString(TAG_DOG_TYPE));
-                        age.add(_tmpJson.getString(TAG_DOG_AGE));
-                        gender.add(_tmpJson.getString(TAG_DOG_GENDER));
-
+                    type[i] = _tmpJson.getString(TAG_DOG_TYPE);
+                    age[i] = _tmpJson.getString(TAG_DOG_AGE);
+                    gender[i] =  _tmpJson.getString(TAG_DOG_GENDER);
+//                        type.add(_tmpJson.getString(TAG_DOG_TYPE));
+//                        age.add(_tmpJson.getString(TAG_DOG_AGE));
+//                        gender.add(_tmpJson.getString(TAG_DOG_GENDER));
                 }
 //                type = doggyList.getJSONArray(TAG_DOG_TYPE).toString().split(",");
 //                age = doggyList.getJSONArray(TAG_DOG_AGE).toString().split(",");
@@ -174,10 +178,11 @@ public class HomeContentFragment extends Fragment
 //            gender = resources.getStringArray(R.array.place_desc);
             TypedArray a = resources.obtainTypedArray(R.array.place_avator);
             image = new Drawable[a.length()];
-            for (int i = 0; i < image.length; i++) {
-                image[i] = a.getDrawable(i);
-            }
-            a.recycle();
+//            for (int i = 0; i < image.length; i++) {
+//                image[i] = a.getDrawable(i);
+//            }
+//            a.recycle();
+
         }
 
 
@@ -191,12 +196,12 @@ public class HomeContentFragment extends Fragment
         public void onBindViewHolder(ViewHolder holder, int position)
         {
             holder.image.setImageDrawable(image[position % image.length]);
-//            holder.type.setText(type[position % type.length]);
-//            holder.age.setText(age[position % age.length]);
-//            holder.gender.setText(gender[position % gender.length]);
-            holder.type.setText(type.get(position % type.size()));
-            holder.age.setText(age.get(position % age.size()));
-            holder.gender.setText(gender.get(position % gender.size()));
+            holder.type.setText(type[position % type.length]);
+            holder.age.setText(age[position % age.length]);
+            holder.gender.setText(gender[position % gender.length]);
+//            holder.type.setText(type.get(position % type.size()));
+//            holder.age.setText(age.get(position % age.size()));
+//            holder.gender.setText(gender.get(position % gender.size()));
         }
 
         @Override
